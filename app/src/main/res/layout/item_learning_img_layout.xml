@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/dp_20"
+    android:layout_marginLeft="@dimen/dp_10"
+    android:id="@+id/item_learning_img_iv"
+    android:layout_marginRight="@dimen/dp_10"
+    android:scaleType="centerCrop"
+    android:layout_height="160dp">
+
+</ImageView>

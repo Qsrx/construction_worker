@@ -1,0 +1,78 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+
+        minSdkVersion 14
+        targetSdkVersion 21
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    productFlavors {
+    }
+    useLibrary 'org.apache.http.legacy'
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    // xUtils
+    api files('libs/xUtils-2.6.14.jar')
+    api 'com.squareup.okhttp3:okhttp:3.4.1'
+    // OKHttp
+    api 'com.squareup.okio:okio:1.10.0'
+    // OKio
+    api 'com.android.support:recyclerview-v7:27.+'
+    // RecyclerView
+    api 'com.github.bumptech.glide:glide:3.7.0'
+
+    // Google图片异步加载框架
+    api 'com.lzy.widget:imagepicker:0.5.3'
+    // 廖子尧图片选择控件
+    api 'com.android.support:support-v4:27.+'
+    api 'com.android.support:appcompat-v7:27.+'
+    // 微信支付
+    api 'com.umeng.analytics:analytics:latest.integration'
+    // 友盟
+//    api 'com.android.support:appcompat-v7:27.+'
+    api 'com.synnapps:carouselview:0.1.3'
+    // 轮播图
+    api 'com.google.code.gson:gson:2.8.0'
+    // Gson
+//    api 'cn.gavinliu.android.lib:ShapedImageView:0.8.4'
+    // 圆形头像
+    api 'com.github.iwgang:countdownview:2.1.3'
+    // 倒计时控件
+    testImplementation 'junit:junit:4.12'
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    // TabLayout可以设置左右滑动和不滑动
+    api 'joda-time:joda-time:2.9.9'
+    api files('libs/litepal-1.4.1-src.jar')
+    //compile project(':easeui')
+    //圆角图片开源库控件
+    api 'com.makeramen:roundedimageview:2.3.0'
+}

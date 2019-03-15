@@ -1,0 +1,87 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">大师</string>
+
+    <string name="drop_down_list_header_default_text">点击可以刷新</string>
+    <string name="drop_down_list_header_pull_text">下拉可以刷新</string>
+    <string name="drop_down_list_header_release_text">松开可以刷新</string>
+    <string name="drop_down_list_header_loading_text">加载中&#8230;</string>
+    <string name="drop_down_list_footer_default_text">更多</string>
+    <string name="drop_down_list_footer_loading_text">加载中&#8230;</string>
+    <string name="drop_down_list_footer_no_more_text">没有更多了</string>
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">上拉/点击查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="no_login">未登录</string>
+    <string name="network_anomaly">网络不给力，请检查网络</string>
+    <string name="server_unknow_error">网络未连接</string>
+    <string name="string_null_error">哎呀，出错了</string>
+    <string name="isnull">请输入完整信息</string>
+    <string name="no_more">无更多数据</string>
+    <string name="crop__saving">保存图片中…</string>
+    <string name="crop__wait">请等待…</string>
+    <string name="crop__pick_error">没有图片资源</string>
+    <string name="crop__done">完成</string>
+    <string name="crop__cancel">取消</string>
+    <string name="loading_countries">Loading countries&#8230;</string>
+    <string name="cube_ptr_pull_down">下拉</string>
+    <string name="cube_ptr_pull_down_to_refresh">下拉刷新</string>
+    <string name="cube_ptr_release_to_refresh">释放刷新</string>
+    <string name="cube_ptr_refreshing">加载中...</string>
+    <string name="cube_ptr_refresh_complete">更新完成.</string>
+    <string name="cube_ptr_last_update">上次更新:&#160;</string>
+    <string name="cube_ptr_seconds_ago">&#160;秒之前</string>
+    <string name="cube_ptr_minutes_ago">&#160;分钟之前</string>
+    <string name="cube_ptr_hours_ago">&#160;小时之前</string>
+
+    <string name="pull_to_refresh_pull_label"></string>
+    <string name="pull_to_refresh_release_label"></string>
+    <string name="pull_to_refresh_refreshing_label"></string>
+
+    <!-- 上拉加载，下拉刷新 -->
+    <string name="head">这里是HeadView</string>
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="loading">正在加载...</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
+    <string name="pull_to_refresh_from_bottom_pull_label"></string>
+    <string name="pull_to_refresh_from_bottom_release_label"></string>
+    <string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string>
+
+    <!--三方登陆-->
+    <string name="userid_found">正在登录…</string>
+    <string name="logining">使用%s登录中…</string>
+    <string name="auth_cancel">授权取消</string>
+    <string name="auth_error">授权失败…</string>
+    <string name="auth_complete">正在登录…</string>
+    <string name="second_title">授权</string>
+
+    <string name="title_activity_splash_aty">SplashAty</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="ssdk_share_to_youtobe">分享到YouToBe</string>
+
+
+
+    <!--日历显示农历-->
+    <string name="time_next">Next</string>
+    <string name="time_prev">Previous</string>
+    <string-array name="weeks">
+        <item>一</item>
+        <item>二</item>
+        <item>三</item>
+        <item>四</item>
+        <item>五</item>
+        <item>六</item>
+        <item>日</item>
+    </string-array>
+
+</resources>

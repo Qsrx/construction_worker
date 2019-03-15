@@ -1,0 +1,151 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
+android {
+    signingConfigs {
+        release {
+            //签名文件路径，我是放到项目中了
+            storeFile file { 'C:/User/Txunda-02/Desktop/construction_worker/cw.jks' }
+            //签名密码
+            storePassword 'android'
+            //别名
+            keyAlias 'cw'
+            //别名密码
+            keyPassword 'android'
+        }
+        debug {
+            //签名文件路径，我是放到项目中了
+            storeFile file { 'C:/Users/Txunda-02/Desktop/construction_worker/cw.jks' }
+            //签名密码
+            storePassword 'android'
+            //别名
+            keyAlias 'cw'
+            //别名密码
+            keyPassword 'android'
+        }
+    }
+
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.txunda.construction_worker"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        packagingOptions {
+            exclude 'META-INF/rxjava.properties'
+        }
+    }
+    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+//        debug {
+//            signingConfig signingConfigs.release
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    buildToolsVersion '27.0.3'
+    sourceSets {
+        main() {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    useLibrary 'org.apache.http.legacy'
+
+}
+MobSDK {
+    appKey "2a3427c706b64"
+    appSecret "d8a5d67a8a5219093037cbed6099f517"
+    ShareSDK {
+        devInfo {
+            Wechat {
+                appId "wxac1846250f4a6c39"
+                appSecret "7f9b00251ff194acba567fda31db3e65"
+                userName "gh_afb25ac019c9"
+                path "pages/index/index.html?id=1"
+                withShareTicket true
+                miniprogramType 2
+            }
+            QQ {
+                appId "1108004040"
+                appKey "SHxJAdsQPZWz3owU"
+            }
+            WechatMoments {
+                appId "wxac1846250f4a6c39"
+                appSecret "7f9b00251ff194acba567fda31db3e65"
+            }
+            WechatFavorite {
+                appId "wxac1846250f4a6c39"
+                appSecret "7f9b00251ff194acba567fda31db3e65"
+            }
+        }
+    }
+}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //    <------------------三方依赖-------------------->
+    //BufferKnife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //天讯达新框架
+    implementation 'com.github.1037438704:TianXunDa:-SNAPSHOT'
+    //圆形头像框架
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    //选图
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.9'
+    //圆角圆形框架
+    implementation 'cn.gavinliu.android.lib:ShapedImageView:0.8.4'
+    //适配器框架
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //Banner轮播
+    implementation 'com.youth.banner:banner:1.4.10'
+    //天讯达Frame包
+    implementation project(path: ':frame')
+    implementation project(':frame')
+    //环信
+    implementation project(':kefu-easeui')
+    implementation project(':rxretrofitlibrary')
+    //解决android方法大于65000
+    implementation 'com.android.support:multidex:1.0.2'
+    //饺子播放器封装
+    implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
+    //标签布局
+    implementation 'com.kongzue.stacklabel:stacklabelview:1.1.0'
+    //标签布局2
+    implementation 'com.google.android:flexbox:0.2.5'
+    //flebox配合RecyclerView
+    implementation 'com.google.android:flexbox:0.3.0-alpha2'
+    //事件订阅发布
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    //RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //下载文件
+    implementation 'com.liulishuo.filedownloader:library:1.7.6'
+    //微信支付
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'com.daimajia.numberprogressbar:library:1.2@aar'
+    implementation 'com.jude:easyrecyclerview:4.2.6'
+    implementation 'com.baoyz.swipemenulistview:library:1.3.0'
+    implementation 'com.j256.ormlite:ormlite-android:5.0'
+}

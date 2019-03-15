@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- bg_row -->
+
+    <!-- crop -->
+
+    <!-- fbutton -->
+
+    <!-- loadingview -->
+    <!-- PagedHeadListView -->
+
+    <!-- ChartView -->
+
+
+    <!-- Distance from vertical label to vertical axis -->
+    <!-- X Axis - Labels border spacing -->
+    <!-- Y Axis - Labels top spacing -->
+    <!-- Axis thickness -->
+
+    <!-- Text Labels size -->
+
+    <!-- Grid thickness -->
+
+    <!-- LineChartView -->
+    <!-- Dot region radius used on click -->
+
+    <!-- BarChartView -->
+
+    <!-- FloatingActionMenu -->
+
+    <!-- pulltorefresh -->
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">25dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">10dp</dimen>
+
+</resources>

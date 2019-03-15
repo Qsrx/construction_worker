@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.txunda.construction_worker">
+
+    <!-- 读写sd卡 -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 写sd卡 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <!-- 获取精确gps位置 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 获取粗略位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 允许程序访问额外的定位提供者指令获取模拟定位信息 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 网络链接 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取网络状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 更改wifi连状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 获取wifi状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/icon_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
+
+        <!-- 主界面 -->
+        <activity android:name=".MainAty" />
+        <!-- 写问题 -->
+        <activity android:name=".ui.aty.WritingProblemsAty" />
+        <!-- 系统设置 -->
+        <activity android:name=".ui.aty.SystemSettingAty" />
+        <!-- 登录界面 -->
+        <activity
+            android:name=".ui.aty.LoginAty"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <!-- 所有登录 -->
+        <activity android:name=".ui.aty.YzmLoginAty" />
+        <!-- 选择考试行业 -->
+        <activity android:name=".ui.aty.ChoiceProfessionAty" />
+        <!-- 第三方分享 -->
+        <activity
+            android:name=".ui.aty.ShardAty"
+            android:theme="@style/share_style" />
+        <!-- 首页详情 -->
+        <activity android:name=".ui.aty.HomeDetailsAty" />
+        <!-- 搜索 -->
+        <activity android:name=".ui.aty.SearchAty" />
+        <!-- 观看历史 -->
+        <activity android:name=".ui.aty.WatchingHistoryAty" />
+        <!-- 选择科目 -->
+        <activity android:name=".ui.aty.SelectionSubjectsAty" />
+        <!-- 直播详情 -->
+        <activity
+            android:name=".ui.aty.LiveDetailsAty"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <!-- 确认订单 -->
+        <activity android:name=".ui.aty.ConfirmOrderAty" />
+        <!-- 课程选集 -->
+        <activity
+            android:name=".ui.aty.CourseSelectionAty"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <!-- 缓存 -->
+        <activity android:name=".ui.aty.CacheAty" />
+        <!-- 做题记录 -->
+        <activity android:name=".ui.aty.DoRecordAty" />
+        <activity android:name=".ui.aty.PopAty" />
+        <!-- 错题集 -->
+        <activity android:name=".ui.aty.MistakesCollectionAty" />
+        <!-- 每日打卡练习 -->
+        <activity android:name=".ui.aty.EverydayPunchClockTestAty" />
+        <!-- 打卡成功 -->
+        <activity android:name=".ui.aty.PunchClockSuccessAty" />
+        <!-- 专项练习题 -->
+        <activity android:name=".ui.aty.SpecialExercisesAty" />
+        <!-- 解锁详情 -->
+        <activity android:name=".ui.aty.UnlockDetailsAty" />
+        <!-- 关于我们 -->
+        <activity android:name=".ui.aty.AboutUsAty" />
+        <!-- 帮助与反馈 -->
+        <activity android:name=".ui.aty.HelpAty" />
+        <!-- 发表评价 -->
+        <activity android:name=".ui.aty.PublicationEvaluationAty" />
+        <!-- 邀请好友 -->
+        <activity android:name=".ui.aty.InvitingFriendsAty" />
+        <!-- 个人资料 -->
+        <activity android:name=".ui.aty.PersonalDataAty" />
+        <!-- 重要通知 -->
+        <activity android:name=".ui.aty.ImportantNoticeAty" />
+        <!-- 系统消息 -->
+        <activity android:name=".ui.aty.SystemMessageAty" />
+        <!-- 我的红包 -->
+        <activity android:name=".ui.aty.RedPackageAty" />
+        <!-- 我的订单 -->
+        <activity android:name=".ui.aty.MyOrderAty" />
+        <!-- 订单详情 -->
+        <activity android:name=".ui.aty.OrderDetailsAty" />
+        <!-- 我的消息 -->
+        <activity android:name=".ui.aty.MyMessageAty" />
+        <!-- 我的评论&评论我的 -->
+        <activity android:name=".ui.aty.CommentDetailsAty" />
+        <!-- 我的收藏 -->
+        <activity android:name=".ui.aty.MyCollectsAty" />
+        <!-- 我的提问 -->
+        <activity android:name=".ui.aty.MyQuizAty" />
+        <!-- 离线缓存 -->
+        <activity android:name=".ui.aty.OfflineCacheAty" />
+        <!-- 缓存详情 -->
+        <activity android:name=".ui.aty.CourseCacheDetailsAty" />
+        <!-- 正在缓存 -->
+        <activity android:name=".ui.aty.CachingAty" />
+        <!-- 每日打卡-做题 -->
+        <activity android:name=".ui.aty.DoWorkAty" />
+        <!-- 解析 -->
+        <activity android:name=".ui.aty.ViewParsingAty" />
+        <!-- 多题 -->
+        <activity android:name=".ui.aty.MoreDoWorkAty" />
+        <!-- 答题卡 -->
+        <activity android:name=".ui.aty.AnswerCardAty" />
+        <activity android:name=".ui.aty.ChapterExercisesAty" />
+        <activity android:name=".ui.aty.ExerciseReportAty" />
+        <activity android:name=".ui.aty.TrueTestQuestionsAty" />
+        <!-- 正文 -->
+        <activity android:name=".ui.aty.MainBodyAty" />
+        <activity android:name=".ui.aty.RealAnswerCardAty" />
+        <!-- 全部评价 -->
+        <activity android:name=".ui.aty.AllTalkAty" />
+        <!-- 真题/模拟题 -->
+        <activity android:name=".ui.aty.RealExamAty" />
+        <activity android:name=".ui.aty.RealExerciseReportAty" />
+        <activity android:name=".ui.aty.SystemMessageDetailsAty" />
+        <!-- 我的课程 -->
+        <activity android:name=".ui.aty.MyClassAty" />
+        <!-- 规则详情 -->
+        <activity android:name=".ui.aty.RuleDetailsAty" />
+        <activity android:name=".ui.aty.GestureFilpAty" />
+        <activity android:name=".ui.aty.ViewPger2Aty" />
+        <!-- 启动页 -->
+        <activity android:name=".ui.aty.BootPageAty">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 引导页 -->
+        <activity android:name=".ui.aty.GuidePageAty" />
+        <!-- 轮播网页详情 -->
+        <activity android:name=".ui.aty.WebDetailsAty" />
+        <!-- 搜索-搜索结果 -->
+        <activity android:name=".ui.aty.ClassSearchAty" />
+        <!-- 微信支付回调 -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="wxac1846250f4a6c39" />
+            </intent-filter>
+        </activity>
+        <receiver android:name=".wxapi.MyReceiver">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+        <!--大图-->
+        <activity
+            android:name=".ui.aty.ImageDetailsAty"
+            android:theme="@style/share_style" />
+        <activity android:name=".ui.aty.ViewsPasingAty"/>
+    </application>
+
+</manifest>

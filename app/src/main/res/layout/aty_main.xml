@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainAty">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <FrameLayout
+            android:id="@+id/aty_main_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_while"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00000000"
+            android:id="@+id/aty_main_v"
+            android:visibility="gone"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_999"/>
+    <RadioGroup
+        android:background="@color/color_while"
+        android:id="@+id/aty_main_rg"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="48dp">
+        <RadioButton
+            android:layout_marginTop="7dp"
+            android:drawableTop="@drawable/main_logo_home"
+            android:text="首页"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textSize="@dimen/sp_12"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:layout_marginTop="7dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_logo_class"
+            android:button="@null"
+            android:gravity="center"
+            android:text="课程"
+            android:textSize="@dimen/sp_12"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:layout_marginTop="7dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="题库"
+            android:drawableTop="@drawable/main_logo_itembank"
+            android:gravity="center"
+            android:button="@null"
+            android:textSize="@dimen/sp_12"
+            android:layout_height="match_parent" />
+        <RadioButton
+            android:layout_marginTop="7dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_logo_myself"
+            android:text="我的"
+            android:gravity="center"
+            android:button="@null"
+            android:textSize="@dimen/sp_12"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+</LinearLayout>

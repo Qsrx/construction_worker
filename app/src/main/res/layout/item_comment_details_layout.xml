@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_7"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/color_while">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <RelativeLayout
+                android:id="@+id/rl_head"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_centerVertical="true"
+                    android:layout_width="@dimen/dp_40"
+                    android:layout_height="@dimen/dp_40"
+                    android:src="@mipmap/my_head_portrait"
+                    android:id="@+id/iv_order_head"/>
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/rl_head"
+                android:text="国境之南"
+                android:textSize="@dimen/sp_16"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/color_c3" />
+            <TextView
+                android:textColor="@color/color_999"
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="2018/07/21  10:30" />
+
+        </RelativeLayout>
+        <TextView
+            android:layout_marginLeft="60dp"
+            android:id="@+id/tv_content"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_c6"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="挺好的喜欢文章的朋友们可以来玩。很凉快不热，工作人员也很热情。两个大屏幕可以玩游戏"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:background="#cccccc"/>
+    </LinearLayout>
+</LinearLayout>

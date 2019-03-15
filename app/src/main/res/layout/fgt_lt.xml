@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_F6"
+    tools:context=".ui.fgt.LtFgt">
+    <!--<com.txunda.construction_worker.ui.view.NoScrollListview-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:divider="@color/color_F6"-->
+        <!--android:id="@+id/fgt_lt_lv"/>-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fgt_lt_rv"
+        android:nestedScrollingEnabled="false"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</FrameLayout>

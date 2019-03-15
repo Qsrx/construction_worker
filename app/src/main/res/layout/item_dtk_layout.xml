@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="40dp"
+    android:id="@+id/item_dtk_tv"
+    android:textColor="@color/color_c3"
+    android:gravity="center"
+    android:layout_marginLeft="@dimen/dp_10"
+    android:layout_marginTop="@dimen/dp_20"
+    android:layout_marginRight="@dimen/dp_10"
+    android:background="@drawable/shape_unselect"
+    android:layout_height="40dp"/>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="50dp"
+        android:background="@color/color_while">
+        <TextView
+            android:id="@+id/item_every_dk_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018/10/11"
+            android:textColor="@color/color_c3"
+            android:textSize="13sp"/>
+        <TextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单选题"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:textSize="13sp"
+            android:textColor="@color/color_c3"/>
+        <View
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15"
+            android:src="@mipmap/icon_my_into"/>
+    </LinearLayout>
+</LinearLayout>

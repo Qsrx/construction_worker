@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="#7F000000"
+             android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="64dp"
+        android:background="@drawable/alert_bg"
+        android:divider="@drawable/lin_layout_vertical_line_shape"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="请选择支付方式"
+            android:textColor="@color/hint_text_color"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/pay_by_balance_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_yue_pay"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/icon_yue_pay"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="余额支付"
+            android:textColor="@color/hint_text_color"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/pay_by_wechat_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_wecha_pay"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/icon_wecha_pay"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="微信支付"
+            android:textColor="@color/hint_text_color"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/pay_by_ali_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/icon_ali_pay"
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/icon_ali_pay"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="支付宝支付"
+            android:textColor="@color/hint_text_color"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/cancel_pay_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="取消"
+            android:textColor="@color/hint_text_color"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/color_while"
+    android:padding="@dimen/dp_10"
+    android:layout_height="@dimen/dp_70">
+    <RelativeLayout
+        android:layout_weight="1"
+        android:layout_width="@dimen/dp_0"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/item_red_package_title"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="注册奖励红包"
+            android:textColor="@color/color_c3"
+            android:textSize="@dimen/sp_14"/>
+        <TextView
+            android:id="@+id/item_red_package_time"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:text="2018/12/29"
+            android:textColor="@color/color_999"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/item_red_package_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+10"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/price_color"
+        android:layout_gravity="center_vertical"/>
+</LinearLayout>

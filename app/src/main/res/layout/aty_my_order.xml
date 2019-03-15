@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_while"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.aty.MyOrderAty">
+    <include layout="@layout/header_layout"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_f2"/>
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/aty_my_order_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        app:tl_indicator_color="@color/main_color"
+        app:tl_indicator_width_equal_title="true"
+        app:tl_tab_space_equal="true"
+        app:tl_textAllCaps="true"
+        app:tl_textBold="NONE"
+        app:tl_textSelectColor="@color/color_c3"
+        app:tl_textUnselectColor="@color/color_c6"
+        app:tl_textsize="15sp"
+        app:tl_underline_color="@color/white"
+        app:tl_underline_height="1dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/color_f2"/>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/aty_my_order_vp"/>
+</LinearLayout>

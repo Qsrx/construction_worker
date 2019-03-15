@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/color_while">
+            <cn.gavinliu.android.lib.shapedimageview.ShapedImageView
+                android:layout_width="match_parent"
+                app:shape_mode="round_rect"
+                android:id="@+id/my_class_rv_siv"
+                app:round_radius="@dimen/dp_5"
+                android:layout_height="100dp"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@mipmap/img_test2"
+                android:scaleType="centerCrop"
+                android:layout_marginRight="@dimen/dp_10"/>
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp_7"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginLeft="@dimen/dp_10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:id="@+id/my_class_rv_tv_title"
+                    android:ellipsize="end"
+                    android:layout_height="wrap_content"
+                    android:text="【全科】 市政专业高级班"
+                    android:textColor="@color/color_c3"
+                    android:textSize="@dimen/sp_12"/>
+            </LinearLayout>
+        </LinearLayout>
+</LinearLayout>

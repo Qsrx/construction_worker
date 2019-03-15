@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_F6"
+    tools:context=".ui.fgt.ClassroomNotesFgt">
+    <EditText
+        android:id="@+id/fgt_classroom_notes_tv"
+        android:padding="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:gravity="left"
+        android:hint="笔记随堂记"
+        android:textColor="@color/color_c3"
+        android:textColorHint="@color/color_999"
+        android:textSize="@dimen/sp_16"
+        />
+</FrameLayout>

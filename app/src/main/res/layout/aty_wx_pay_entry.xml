@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <include layout="@layout/header_layout"/>
+    <LinearLayout
+        android:id="@+id/aty_confirm_order_yj_pay"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_marginTop="60dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@mipmap/icon_steam"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付成功"
+            android:textColor="@color/color_c3"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginTop="@dimen/dp_10"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您可以在我的订单中查看订单"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/color_999"
+            android:layout_marginTop="@dimen/dp_5"/>
+        <TextView
+            android:id="@+id/aty_confirm_order_tv_finish"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginTop="60dp"
+            android:text="完成"
+            android:background="@drawable/login_yzm_bg"
+            android:textColor="@color/color_c3"
+            android:textSize="@dimen/sp_16"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"/>
+    </LinearLayout>
+</LinearLayout>

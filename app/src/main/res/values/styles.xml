@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="main_menu_photo_anim">
+        <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>
+    </style>
+
+    <style name="mRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar</item>
+        <item name="android:minHeight">@dimen/dp_10</item>
+        <item name="android:maxHeight">@dimen/dp_10</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+    <style name="home_small_tv_style">
+        <item name="android:textColor">@color/color_c3</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+    <style name="home_big_tv_style">
+        <item name="android:textColor">@color/main_color</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+</resources>

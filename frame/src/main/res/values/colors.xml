@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#F23030</color>
+
+    <color name="black">#000000</color>
+    <color name="gray">#E7E7E7</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+
+    <color name="translucentForColorPrimary">#7fFF4081</color>
+    <!-- 80%透明的主题色 -->
+    <color name="translucentForThemeColor">#33F23030</color>
+    <!--透明-->
+    <color name="transparent">@android:color/transparent</color>
+    <!--白色-->
+    <color name="white">#ffffff</color>
+
+    <!--RecyclerView-->
+
+    <!-- 主题色 -->
+    <color name="theme_color">#FA6165</color>
+    <!-- 灰色字体颜色 -->
+    <color name="gray_text_color">#9E9E9E</color>
+    <!-- 提示文字的颜色 -->
+    <color name="hint_text_color">#666666</color>
+    <!-- 提示文字的颜色 -->
+    <color name="a_large_blank_area_color">#F6F6F6</color>
+    <!-- 分割线颜色 -->
+    <color name="view_color">#B9B9B9</color>
+    <!-- 背景颜色 F6F6F6 -->
+    <color name="bg_color">#F6F6F6</color>
+    <!-- 今日必抢字体颜色颜色 C2C2C2 -->
+    <color name="text_color">#C2C2C2</color>
+    <!-- App字体颜色    黑色 -->
+    <color name="app_text_color">#333333</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+
+    <color name="black_overlay">#66000000</color>
+
+
+    <!--日历显示农历-->
+    <color name="redColor">#F23030</color>
+    <!-- 文字颜色 -->
+    <color name="grey_text">#999999</color>
+    <!-- calendar color -->
+    <color name="cal_text_normal">#4A4A4A</color>
+    <color name="cal_text_light">#ababab</color>
+    <color name="cal_text_super_light">#c0c0c0</color>
+    <color name="cal_blue_light">#8EC5EE</color>
+    <color name="cal_blue_dark">#336F9C</color>
+    <color name="cal_stroke">#77d4f6</color>
+    <color name="cal_days_title">#F5F5F5</color>
+    <color name="cal_vertical_line">#E9F6FF</color>
+    <color name="cal_line_grey">#9B9B9B</color>
+    <color name="cal_color_white">#FFFFFF</color>
+    <color name="cal_color_red">#FFE54E36</color>
+    <color name="cal_color_green">#FF16A085</color>
+    <color name="cal_color_point_blue">#FF1875D1</color>
+    <color name="text_normal">#626262</color>
+    <color name="text_light">#ababab</color>
+    <color name="text_super_light">#c0c0c0</color>
+    <color name="blue_light">#48a5cc</color>
+    <color name="blue_dark">#00aeef</color>
+    <color name="stroke">#77d4f6</color>
+    <color name="refund">#f9f9f9</color>
+    <color name="main_color">#FFDA0F</color>
+</resources>

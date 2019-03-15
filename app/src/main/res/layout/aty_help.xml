@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_while"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.aty.HelpAty">
+    <include layout="@layout/header_layout"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_ccc"/>
+    <EditText
+        android:id="@+id/aty_help_et_content"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:padding="@dimen/dp_10"
+        android:gravity="left"
+        android:hint="请输入您宝贵的意见"
+        android:textColorHint="@color/color_999"
+        android:textColor="@color/color_c3"
+        android:textSize="@dimen/sp_12"
+        android:background="@color/color_F6"
+        android:layout_margin="@dimen/dp_10"/>
+    <TextView
+        android:id="@+id/aty_help_tv_post"
+        android:layout_marginTop="@dimen/dp_70"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/color_c3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="@drawable/login_yzm_bg"/>
+</LinearLayout>
