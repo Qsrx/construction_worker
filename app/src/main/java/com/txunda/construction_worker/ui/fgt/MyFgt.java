@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ants.theantsgo.gson.GsonUtil;
@@ -16,6 +17,9 @@ import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseokhttp.HttpRequest;
 import com.kongzue.baseokhttp.listener.ResponseListener;
 import com.kongzue.baseokhttp.util.Parameter;
+import com.tencent.mm.opensdk.modelbiz.SubscribeMessage;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.txunda.construction_worker.R;
 import com.txunda.construction_worker.base.BaseFgt;
 import com.txunda.construction_worker.bean.MyBean;
@@ -33,6 +37,7 @@ import com.txunda.construction_worker.ui.aty.RedPackageAty;
 import com.txunda.construction_worker.ui.aty.ShardAty;
 import com.txunda.construction_worker.ui.aty.SystemSettingAty;
 import com.txunda.construction_worker.utils.AllStatus;
+import com.txunda.construction_worker.utils.Constants;
 
 import java.util.Map;
 
@@ -44,6 +49,7 @@ public class MyFgt extends BaseFgt implements View.OnClickListener{
     CircleImageView pic;
     ImageView iv_wx,iv_share;
     private Dialog dialog;
+    RelativeLayout dialog_rl_jump;
     ImageView dialog_iv_close;
     TextView tv_name,tv_tel,tv_quiz,tv_collects,tv_message;
     @Override
@@ -154,11 +160,24 @@ public class MyFgt extends BaseFgt implements View.OnClickListener{
         window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
         window.setContentView(R.layout.home_dialog_layout);
         window.setBackgroundDrawableResource(R.color.transparent);
+        dialog_rl_jump = window.findViewById(R.id.home_dialog_rl_bg);
         dialog_iv_close = window.findViewById(R.id.home_dialog_layout_iv_close);
         dialog_iv_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+            }
+        });
+        dialog_rl_jump.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SubscribeMessage.Req req = new SubscribeMessage.Req();
+                IWXAPI api = WXAPIFactory.createWXAPI(me, Constants.APP_ID);
+                // 将该app注册到微信
+                api.registerApp(Constants.APP_ID);
+                req.templateID = "Ea8eGs9rLl45fV5cjRwPewSlyM1Nbe54FN3yR8xE8kQ";
+                req.scene = 889;
+                api.sendReq(req);
             }
         });
     }

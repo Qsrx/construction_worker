@@ -36,6 +36,7 @@ import com.txunda.construction_worker.ui.fgt.CourseSelectionFgt;
 import com.txunda.construction_worker.ui.fgt.LearningMaterialsFgt;
 import com.txunda.construction_worker.utils.AllStatus;
 import com.txunda.construction_worker.utils.Constant;
+import com.txunda.construction_worker.utils.LogUtil;
 import com.txunda.construction_worker.utils.MessageHelper;
 import com.txunda.construction_worker.utils.StatusBarUtil;
 
@@ -81,18 +82,21 @@ public class CourseSelectionAty extends BaseAty {
     TextView atyCourseSelectionTvPrice;
     @BindView(R.id.aty_course_selection_rg)
     RadioGroup atyCourseSelectionRg;
+    @BindView(R.id.aty_course_selection_tv_definition)
+    TextView atyCourseSelectionTvDefinition;
     private String[] titles;
     private List<Fragment> mFragmentList = new ArrayList<>();
     public static String subject_id = "";
     public CourseSelectionBean selectionBean;
     private int collection;
+    public static int DEFINITION = 1;
     @Override
     public void initViews() {
         super.initViews();
         StatusBarUtil.transparencyBar(this);
         ButterKnife.bind(this);
         subject_id = getIntent().getStringExtra("subject_id");
-        Log.d("ioqweiqwieiqw", "initViews: ==========="+subject_id);
+        Log.d("ioqweiqwieiqw", "initViews: ===========" + subject_id);
 //        atyCourseSelectionJz.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
 //                , "", JzvdStd.SCREEN_WINDOW_NORMAL);
 //        Glide.with(this).load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png").into(atyCourseSelectionJz.thumbImageView);
@@ -105,14 +109,14 @@ public class CourseSelectionAty extends BaseAty {
     }
 
 
-    @OnClick({R.id.aty_course_selection_save, R.id.aty_course_selection_back, R.id.aty_course_selection_iv_down, R.id.aty_course_selection_iv_share, R.id.aty_course_selection_rb_sc, R.id.aty_selection_subjects_rl_kf, R.id.aty_selection_subjects_rl_buy})
+    @OnClick({R.id.aty_course_selection_tv_definition,R.id.aty_course_selection_save, R.id.aty_course_selection_back, R.id.aty_course_selection_iv_down, R.id.aty_course_selection_iv_share, R.id.aty_course_selection_rb_sc, R.id.aty_selection_subjects_rl_kf, R.id.aty_selection_subjects_rl_buy})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.aty_selection_subjects_rl_buy:
 //                jump(ConfirmOrderAty.class);
                 Intent intent = new Intent(me, ConfirmOrderAty.class);
-                intent.putExtra("taocan_id",subject_id);
-                intent.putExtra("type","2");
+                intent.putExtra("taocan_id", subject_id);
+                intent.putExtra("type", "2");
                 startActivity(intent);
                 break;
             case R.id.aty_selection_subjects_rl_kf:
@@ -162,6 +166,24 @@ public class CourseSelectionAty extends BaseAty {
                 break;
             case R.id.aty_course_selection_save:
                 saveNotes();
+                break;
+            case R.id.aty_course_selection_tv_definition:
+                Jzvd.releaseAllVideos();
+                if (DEFINITION == 1){
+                    DEFINITION = 2;
+                    atyCourseSelectionTvDefinition.setText("高清");
+                    atyCourseSelectionJz.setUp(selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getVideo_path_two(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                }else {
+                    DEFINITION = 1;
+                    atyCourseSelectionTvDefinition.setText("标清");
+                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" + selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getMulu() + "." + selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getName() + ".mp4";
+                    if (isFileExit(s)) {
+                        toast("本地播放");
+                        atyCourseSelectionJz.setUp(s, null, Jzvd.SCREEN_WINDOW_NORMAL);
+                    } else {
+                        atyCourseSelectionJz.setUp(selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getVideo_path(), "", JzvdStd.SCREEN_WINDOW_NORMAL);
+                    }
+                }
                 break;
             default:
                 break;
@@ -228,19 +250,20 @@ public class CourseSelectionAty extends BaseAty {
                     public void onResponse(String response, Exception error) {
                         if (error == null) {
                             WaitDialog.dismiss();
+                            LogUtil.e("jirwerew",response);
                             Log.d("cousebean", "onResponse: ============" + response);
                             Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
                             try {
                                 if (objectMap.get("code").equals("1")) {
                                     selectionBean = GsonUtil.GsonToBean(response, CourseSelectionBean.class);
-                                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/"+selectionBean.getData().getDirectory().get(0).getList().get(0).getMulu()+"."+selectionBean.getData().getDirectory().get(0).getList().get(0).getName() + ".mp4";
-                                    if (isFileExit(s)){
+                                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" + selectionBean.getData().getDirectory().get(0).getList().get(0).getMulu() + "." + selectionBean.getData().getDirectory().get(0).getList().get(0).getName() + ".mp4";
+                                    if (isFileExit(s)) {
                                         toast("本地播放");
                                         Log.d("jiaozistate", "onResponse: ===========本地播放");
-                                        atyCourseSelectionJz.setUp(s,null,Jzvd.SCREEN_WINDOW_NORMAL);
-                                    }else {
+                                        atyCourseSelectionJz.setUp(s, null, Jzvd.SCREEN_WINDOW_NORMAL);
+                                    } else {
                                         Log.d("jiaozistate", "onResponse: ===========在线播放");
-                                        atyCourseSelectionJz.setUp(selectionBean.getData().getShipin().get(0).getVideo_path(), "", JzvdStd.SCREEN_WINDOW_NORMAL);
+                                        atyCourseSelectionJz.setUp(selectionBean.getData().getShipin().get(0).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
                                     }
 //                                    toast(isFileExit(s));
                                     Glide.with(me).load(selectionBean.getData().getShipin().get(0).getVideo_pic()).into(atyCourseSelectionJz.thumbImageView);
@@ -248,7 +271,7 @@ public class CourseSelectionAty extends BaseAty {
                                     //Collection = 1已收藏else未收藏
                                     if (selectionBean.getData().getCollection() == 1) {
                                         atyCourseSelectionRbSc.setImageResource(R.mipmap.icon_class_sc);
-                                    }else {
+                                    } else {
                                         atyCourseSelectionRbSc.setImageResource(R.mipmap.icon_unsc);
                                     }
                                     collection = selectionBean.getData().getCollection();
@@ -315,6 +338,7 @@ public class CourseSelectionAty extends BaseAty {
                     }
                 });
     }
+
     @Override
     public void onBackPressed() {
         if (Jzvd.backPress()) {
@@ -322,33 +346,36 @@ public class CourseSelectionAty extends BaseAty {
         }
         super.onBackPressed();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         Jzvd.releaseAllVideos();
     }
-    private void changeSc(int num){
-        if (num == 1){
+
+    private void changeSc(int num) {
+        if (num == 1) {
             atyCourseSelectionRbSc.setImageResource(R.mipmap.icon_unsc);
             collection = 2;
-        }else {
+        } else {
             atyCourseSelectionRbSc.setImageResource(R.mipmap.icon_class_sc);
             collection = 1;
         }
     }
 
-    public static boolean isFileExit(String path){
-        if(path == null){
+    public static boolean isFileExit(String path) {
+        if (path == null) {
             return false;
         }
-        try{
+        try {
             File f = new File(path);
-            if(!f.exists()){
+            if (!f.exists()) {
                 return false;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             // TODO: handle exception
         }
         return true;
     }
+
 }

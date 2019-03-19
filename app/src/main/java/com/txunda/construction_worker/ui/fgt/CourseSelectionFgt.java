@@ -32,6 +32,8 @@ import java.util.Map;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 
+import static com.txunda.construction_worker.ui.aty.CourseSelectionAty.DEFINITION;
+
 /**
  * 课程选集fragment
  */
@@ -84,7 +86,12 @@ public class CourseSelectionFgt extends BaseFgt {
                             jzvdStd.setUp(s,null,Jzvd.SCREEN_WINDOW_NORMAL);
                         }else {
                             Log.d("jiaozistate", "onResponse: ===========在线播放");
-                            jzvdStd.setUp(selectionBean.getData().getShipin().get(postion).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            if (DEFINITION == 1) {
+                                jzvdStd.setUp(selectionBean.getData().getShipin().get(postion).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            }else {
+                                jzvdStd.setUp(selectionBean.getData().getShipin().get(postion).getVideo_path_two(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            }
+
                         }
 //                        jzvdStd.setUp(selectionBean.getData().getShipin().get(postion).getVideo_path()
 //                        ,null, JzvdStd.SCREEN_WINDOW_NORMAL);
@@ -110,7 +117,12 @@ public class CourseSelectionFgt extends BaseFgt {
                             jzvdStd.setUp(s,null,Jzvd.SCREEN_WINDOW_NORMAL);
                         }else {
                             Log.d("jiaozistate", "onResponse: ===========在线播放");
-                            jzvdStd.setUp(selectionBean.getData().getShipin().get(i1).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            if (DEFINITION == 1) {
+                                jzvdStd.setUp(selectionBean.getData().getShipin().get(i1).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            }else {
+                                jzvdStd.setUp(selectionBean.getData().getShipin().get(i1).getVideo_path_two(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            }
+//                            jzvdStd.setUp(selectionBean.getData().getShipin().get(i1).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
                         }
 //                        jzvdStd.setUp(selectionBean.getData().getShipin().get(i1).getVideo_path()
 //                                , null, JzvdStd.SCREEN_WINDOW_NORMAL);
@@ -126,7 +138,12 @@ public class CourseSelectionFgt extends BaseFgt {
                             jzvdStd.setUp(s,null,Jzvd.SCREEN_WINDOW_NORMAL);
                         }else {
                             Log.d("jiaozistate", "onResponse: ===========在线播放");
-                            jzvdStd.setUp(selectionBean.getData().getShipin().get(i2).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            if (DEFINITION == 1) {
+                                jzvdStd.setUp(selectionBean.getData().getShipin().get(i2).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            }else {
+                                jzvdStd.setUp(selectionBean.getData().getShipin().get(i2).getVideo_path_two(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
+                            }
+//                            jzvdStd.setUp(selectionBean.getData().getShipin().get(i2).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
                         }
 //                        jzvdStd.setUp(selectionBean.getData().getShipin().get(i2).getVideo_path()
 //                                , null, JzvdStd.SCREEN_WINDOW_NORMAL);

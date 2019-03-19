@@ -149,6 +149,7 @@ public class CourseSelectionBean {
             private String mulu;
             private String video_pic;
             private String video_path;
+            private String video_path_two;
 
             public String getName() {
                 return name;
@@ -181,6 +182,14 @@ public class CourseSelectionBean {
             public void setVideo_path(String video_path) {
                 this.video_path = video_path;
             }
+
+            public String getVideo_path_two() {
+                return video_path_two;
+            }
+
+            public void setVideo_path_two(String video_path_two) {
+                this.video_path_two = video_path_two;
+            }
         }
 
         public static class CourseListBean {
@@ -206,6 +215,14 @@ public class CourseSelectionBean {
 
             public void setType(String type) {
                 this.type = type;
+            }
+
+            @Override
+            public String toString() {
+                return "CourseListBean{" +
+                        "course='" + course + '\'' +
+                        ", type='" + type + '\'' +
+                        '}';
             }
         }
 

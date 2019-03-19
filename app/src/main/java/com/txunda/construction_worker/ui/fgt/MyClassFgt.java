@@ -2,6 +2,7 @@ package com.txunda.construction_worker.ui.fgt;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
@@ -162,7 +163,10 @@ public class MyClassFgt extends BaseFgt implements View.OnClickListener{
                 .setPositiveButton("确认", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        toast("点击了确认");
+                        //拨打电话
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "4008756958"));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {
             @Override

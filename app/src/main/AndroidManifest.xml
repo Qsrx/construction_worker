@@ -134,11 +134,15 @@
         <activity android:name=".ui.aty.MoreDoWorkAty" />
         <!-- 答题卡 -->
         <activity android:name=".ui.aty.AnswerCardAty" />
+        <!--章节练习-->
         <activity android:name=".ui.aty.ChapterExercisesAty" />
+        <!--练习报告-->
         <activity android:name=".ui.aty.ExerciseReportAty" />
+        <!--真题考试题-->
         <activity android:name=".ui.aty.TrueTestQuestionsAty" />
         <!-- 正文 -->
         <activity android:name=".ui.aty.MainBodyAty" />
+        <!--模拟和真题答题卡-->
         <activity android:name=".ui.aty.RealAnswerCardAty" />
         <!-- 全部评价 -->
         <activity android:name=".ui.aty.AllTalkAty" />
@@ -186,6 +190,7 @@
         <activity
             android:name=".ui.aty.ImageDetailsAty"
             android:theme="@style/share_style" />
+        <!--查看多题-->
         <activity android:name=".ui.aty.ViewsPasingAty"/>
     </application>
 

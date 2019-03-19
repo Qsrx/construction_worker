@@ -10,7 +10,6 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,7 +85,7 @@ public class SystemClassFgt extends BaseFgt implements View.OnClickListener{
         tv_pay = findViewById(R.id.fgt_system_class_hot_tv_pay);
         iv_kf = findViewById(R.id.fgt_system_class_iv_kf);
         tv_type = findViewById(R.id.fgt_system_class_tv_type);
-        tv_type = findViewById(R.id.fgt_system_class_tv_type);
+//        tv_type = findViewById(R.id.fgt_system_class_tv_type);
         nestedScrollView = findViewById(R.id.fgt_system_class_nsv);
         ll_hot = findViewById(R.id.fgt_system_class_ll_hot);
         refreshLayout = findViewById(R.id.fgt_system_class_smartrefresh);
@@ -194,9 +193,6 @@ public class SystemClassFgt extends BaseFgt implements View.OnClickListener{
                     @Override
                     public void onResponse(String response, Exception error) {
                         if (error == null) {
-                            Log.d("systemclassdata", "onResponse: ==========="+response);
-                            Log.d("systemclassdata", "onResponse: ==========="+subject_id);
-                            Log.d("systemclassdata", "onResponse: ==========="+page);
                             WaitDialog.dismiss();
                             refreshLayout.finishRefresh();
                             refreshLayout.finishLoadmore();

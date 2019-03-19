@@ -40,14 +40,19 @@ public class CoureseRvAdapter extends RecyclerView.Adapter<CoureseRvAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        if (list.get(position).getType().equals("2")){
-            holder.imageView.setVisibility(View.VISIBLE);
-            holder.tv_title.setVisibility(View.GONE);
-        }else {
-            holder.tv_title.setVisibility(View.VISIBLE);
-            holder.tv_title.setText(list.get(position).getCourse());
-            holder.imageView.setVisibility(View.GONE);
+        try {
+            if (list.get(position).getType().equals("2")){
+                holder.imageView.setVisibility(View.VISIBLE);
+                holder.tv_title.setVisibility(View.GONE);
+            }else {
+                holder.tv_title.setVisibility(View.VISIBLE);
+                holder.tv_title.setText(list.get(position).getCourse());
+                holder.imageView.setVisibility(View.GONE);
+            }
+        }catch (NullPointerException e){
+
         }
+
         if (position == CourseSelectionFgt.index){
             holder.tv_title.setTextColor(Color.parseColor("#FFDA0F"));
         }else {

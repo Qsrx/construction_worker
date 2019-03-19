@@ -1,6 +1,7 @@
 package com.txunda.construction_worker.ui.aty;
 
 import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -153,6 +154,8 @@ public class YzmLoginAty extends BaseAty {
             atyYzmLoginTvForget.setVisibility(View.GONE);
             atyYzmLoginTv.setText("验证");
         }else if (type.equals("6")){
+            atyYzmLoginEtPw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            bind_id = getIntent().getStringExtra("bind_id");
             atyYzmLoginTv.setText("立即绑定");
             headerTvTitle.setText("绑定手机号");
             atyYzmLoginRl.setVisibility(View.GONE);
@@ -273,28 +276,6 @@ public class YzmLoginAty extends BaseAty {
             default:
                 break;
         }
-    }
-
-    /**
-     * 微信绑定账号请求
-     */
-    private void httpWxLogin() {
-        HttpRequest.POST(me, AllStatus.BASE_URL + "Member/threeLoginBind", new Parameter()
-                        .add("bind_id", bind_id)
-                        .add("account", atyYzmLoginEtPhone.getText().toString())
-                        .add("verify", atyYzmLoginEtPw.getText().toString()), new ResponseListener() {
-                    @Override
-                    public void onResponse(String response, Exception error) {
-                        Log.d("yzmloginbean", "onResponse: =========="+response);
-                        Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
-                        if (objectMap.get("code").equals("1")) {
-
-                            return;
-                        }
-                        toast(objectMap.get("message"));
-                    }
-                }
-        );
     }
 
     /**
@@ -451,7 +432,6 @@ public class YzmLoginAty extends BaseAty {
                                         ChatClient.getInstance().login(loginBean.getData().getIm_account(), loginBean.getData().getIm_password(), new Callback() {
                                             @Override
                                             public void onSuccess() {
-// 登陆成功，保存用户昵称与头像URL
                                             }
 
                                             @Override
@@ -605,6 +585,51 @@ public class YzmLoginAty extends BaseAty {
                         }
                     }
                 });
+    }
+    /**
+     * 微信绑定账号请求
+     */
+    private void httpWxLogin() {
+        HttpRequest.POST(me, AllStatus.BASE_URL + "Member/threeLoginBind", new Parameter()
+                        .add("bind_id", bind_id)
+                        .add("account", atyYzmLoginEtPhone.getText().toString())
+                        .add("verify", atyYzmLoginEtPw.getText().toString()), new ResponseListener() {
+                    @Override
+                    public void onResponse(String response, Exception error) {
+                        Log.d("yzmloginbean", "onResponse: =========="+response);
+                        Map<String, String> objectMap = JSONUtils.parseKeyAndValueToMap(response);
+                        if (objectMap.get("code").equals("1")) {
+                            Map<String, String> map = JSONUtils.parseKeyAndValueToMap(objectMap.get("data"));
+                            Preferences.getInstance().set(YzmLoginAty.this,"construction","token",map.get("token"));
+                            Preferences.getInstance().set(YzmLoginAty.this,"construction","account",map.get("account"));
+                            if (!isNull(map.get("im_account"))||!isNull(map.get("im_password"))){
+                                ChatClient.getInstance().login(map.get("im_account"),map.get("im_password"), new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                    }
+
+                                    @Override
+                                    public void onError(int i, String s) {
+                                        toast("环信登录Error:"+s);
+                                    }
+
+                                    @Override
+                                    public void onProgress(int i, String s) {
+                                        toast("环信登录Progress:"+s);
+                                    }
+                                });
+                            }else {
+                                showErrorTip("未获取到环信账号");
+                            }
+                            jump(ChoiceProfessionAty.class);
+                            atyYzmLoginTv.setEnabled(true);
+                            finish();
+                            return;
+                        }
+                        toast(objectMap.get("message"));
+                    }
+                }
+        );
     }
     private void viewNotice(){
         atyYzmLoginEtPhone.setText("");
