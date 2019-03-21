@@ -25,6 +25,8 @@ import com.txunda.construction_worker.utils.PanDuanUtils;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static com.txunda.construction_worker.ui.aty.ViewPger2Aty.STYLE;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,6 +83,10 @@ public class Content2Fgt extends BaseFgt{
                 return true;
             }
         });
+
+        if (STYLE == 3){
+            fgt_content_see_all.setVisibility(View.GONE);
+        }
     }
 
     @Override

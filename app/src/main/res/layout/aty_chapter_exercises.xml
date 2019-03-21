@@ -18,9 +18,4 @@
         android:layout_height="match_parent"
         android:background="@color/color_d2d2d2"
         android:id="@+id/aty_chapter_exercises_rv"/>
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/dp_0"-->
-        <!--android:layout_weight="1"-->
-        <!--android:background="@color/color_F6"/>-->
 </LinearLayout>

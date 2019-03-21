@@ -225,9 +225,5 @@ public class ShardAty extends BaseAty implements View.OnClickListener, ShareBeBa
         shareParams.setText(content);
         shareParams.setUrl(url);
         shareParams.setImageData(bmp);
-//        shareParams.setImageUrl(imageUrl);
-
-//        platform.setPlatformActionListener(mListener);
-//        platform.share(shareParams);
     }
 }

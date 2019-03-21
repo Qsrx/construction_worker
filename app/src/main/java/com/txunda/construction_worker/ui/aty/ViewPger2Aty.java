@@ -65,6 +65,8 @@ public class ViewPger2Aty extends BaseAty {
     private String type_id = "";
     private String chapter_num = "";
     public static String questions_type = "1";
+    //1:专项2:章节3:模拟&真题
+    public static int STYLE = -1;
     private int index = 0;
     @Override
     public void initViews() {
@@ -82,13 +84,16 @@ public class ViewPger2Aty extends BaseAty {
         if (type == null){
             if (chapter_num == null){
                 questions_type = "3";
+                STYLE = 3;
                 httpData3();
                 return;
             }
             questions_type = "2";
+            STYLE = 2;
             httpData2();
             return;
         }
+        STYLE = 1;
         practice();
     }
 
@@ -152,6 +157,10 @@ public class ViewPger2Aty extends BaseAty {
     }
 
     private void practice() {
+        if (type.equals("4")){
+            atyMoreDoWorkIvDtk.setVisibility(View.GONE);
+            atyDoWorkTvPost.setVisibility(View.GONE);
+        }
         HttpRequest.POST(me, AllStatus.BASE_URL + "Exercises/practice", new Parameter()
                         .add("token", MainAty.token)
                         .add("subject_id", subject_id)

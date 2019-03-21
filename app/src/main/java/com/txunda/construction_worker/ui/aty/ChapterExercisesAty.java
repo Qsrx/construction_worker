@@ -33,6 +33,7 @@ import static com.txunda.construction_worker.ui.fgt.ItemBankFgt.subject_id;
 
 /**
  * 章节练习题
+ * By : Hzy  win_hzy@163.com
  */
 @Layout(R.layout.aty_chapter_exercises)
 public class ChapterExercisesAty extends BaseAty {
@@ -49,14 +50,13 @@ public class ChapterExercisesAty extends BaseAty {
         super.initViews();
         StatusBarUtil.StatusBarLightMode(this);
         ButterKnife.bind(this);
+        //设置标题文字
         headerTvTitle.setText("章节练习题");
+        //设置RecyclerView的布局管理器
         atyChapterExercisesRv.setLayoutManager(new LinearLayoutManager(this));
+        //实例化适配器
         adapter = new ChapterExercisesRvAdapter(R.layout.item_chapter_exercises_layout);
-//        List<String> list = new ArrayList<>();
-//        for (int i = 1; i < 21; i++) {
-//            list.add(String.valueOf(i));
-//        }
-//        adapter.setNewData(list);
+        //设置列表适配器
         atyChapterExercisesRv.setAdapter(adapter);
     }
 
@@ -68,6 +68,7 @@ public class ChapterExercisesAty extends BaseAty {
     @Override
     public void setEvents() {
         super.setEvents();
+        //适配器条目点击事件
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -85,7 +86,11 @@ public class ChapterExercisesAty extends BaseAty {
         httpData();
     }
 
+    /**
+     * 请求本页数据
+     */
     private void httpData(){
+        //显示加载框
         WaitDialog.show(me,"数据加载中……");
         HttpRequest.POST(me, AllStatus.BASE_URL + "Exercises/chapter_exercises", new Parameter()
                         .add("token", token)
@@ -94,8 +99,11 @@ public class ChapterExercisesAty extends BaseAty {
                     @Override
                     public void onResponse(String response, Exception error) {
                         if (error == null) {
+                            //关闭加载框
                             WaitDialog.dismiss();
+                            //接收到数据并转为map
                             Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
+                            //code为1是显示成功,失败则显示后台异常
                             if (objectMap.get("code").equals("1")) {
                                 exercisesBean = GsonUtil.GsonToBean(response, ChapterExercisesBean.class);
                                 adapter.setNewData(exercisesBean.getData());
@@ -107,4 +115,5 @@ public class ChapterExercisesAty extends BaseAty {
                     }
                 });
     }
+
 }

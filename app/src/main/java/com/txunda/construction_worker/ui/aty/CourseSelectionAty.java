@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,7 +35,6 @@ import com.txunda.construction_worker.ui.fgt.CourseSelectionFgt;
 import com.txunda.construction_worker.ui.fgt.LearningMaterialsFgt;
 import com.txunda.construction_worker.utils.AllStatus;
 import com.txunda.construction_worker.utils.Constant;
-import com.txunda.construction_worker.utils.LogUtil;
 import com.txunda.construction_worker.utils.MessageHelper;
 import com.txunda.construction_worker.utils.StatusBarUtil;
 
@@ -53,6 +51,7 @@ import cn.jzvd.JzvdStd;
 
 /**
  * 课程选集
+ * By ：Hzy  win_hzy@163.com
  */
 @Layout(R.layout.aty_course_selection)
 public class CourseSelectionAty extends BaseAty {
@@ -96,11 +95,6 @@ public class CourseSelectionAty extends BaseAty {
         StatusBarUtil.transparencyBar(this);
         ButterKnife.bind(this);
         subject_id = getIntent().getStringExtra("subject_id");
-        Log.d("ioqweiqwieiqw", "initViews: ===========" + subject_id);
-//        atyCourseSelectionJz.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-//                , "", JzvdStd.SCREEN_WINDOW_NORMAL);
-//        Glide.with(this).load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png").into(atyCourseSelectionJz.thumbImageView);
-//        setRbSize(atyCourseSelectionRbSc);
         titles = new String[]{"课程选集", "学习资料", "课程笔记"};
         mFragmentList.add(new CourseSelectionFgt());
         mFragmentList.add(new LearningMaterialsFgt());
@@ -120,19 +114,6 @@ public class CourseSelectionAty extends BaseAty {
                 startActivity(intent);
                 break;
             case R.id.aty_selection_subjects_rl_kf:
-//                new AlertDialog(me).builder().setTitle("建工邦教育").setMsg("400 875 6958")
-//                        .setPositiveButton("确认", new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                toast("点击了确认");
-//                            }
-//                        }).setNegativeButton("取消", new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        // TODO Auto-generated method stub
-//
-//                    }
-//                }).show();
                 if (ChatClient.getInstance().isLoggedInBefore()) {
                     //已经登录，可以直接进入会话界面
                     Bundle bundle = new Bundle();
@@ -210,7 +191,7 @@ public class CourseSelectionAty extends BaseAty {
     @Override
     public void setEvents() {
         super.setEvents();
-        atyCourseSelectionVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        atyCourseSelectionVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
 
@@ -250,8 +231,6 @@ public class CourseSelectionAty extends BaseAty {
                     public void onResponse(String response, Exception error) {
                         if (error == null) {
                             WaitDialog.dismiss();
-                            LogUtil.e("jirwerew",response);
-                            Log.d("cousebean", "onResponse: ============" + response);
                             Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
                             try {
                                 if (objectMap.get("code").equals("1")) {
@@ -259,10 +238,8 @@ public class CourseSelectionAty extends BaseAty {
                                     String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" + selectionBean.getData().getDirectory().get(0).getList().get(0).getMulu() + "." + selectionBean.getData().getDirectory().get(0).getList().get(0).getName() + ".mp4";
                                     if (isFileExit(s)) {
                                         toast("本地播放");
-                                        Log.d("jiaozistate", "onResponse: ===========本地播放");
                                         atyCourseSelectionJz.setUp(s, null, Jzvd.SCREEN_WINDOW_NORMAL);
                                     } else {
-                                        Log.d("jiaozistate", "onResponse: ===========在线播放");
                                         atyCourseSelectionJz.setUp(selectionBean.getData().getShipin().get(0).getVideo_path(), null, JzvdStd.SCREEN_WINDOW_NORMAL);
                                     }
 //                                    toast(isFileExit(s));

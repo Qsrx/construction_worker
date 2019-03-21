@@ -160,7 +160,6 @@ public class ExerciseReportAty extends BaseAty {
                         if (objectMap.get("code").equals("1")) {
                             ExerciseReportBean reportBean = GsonUtil.GsonToBean(response, ExerciseReportBean.class);
                             atyExerciseReportJg.setText("答对"+reportBean.getData().getCount()+"题");
-                            Log.d("exelnrlewkk", "onResponse: ============"+response);
                             adapter.setNewData(reportBean.getData().getList());
                             adapter.notifyDataSetChanged();
                             return;
@@ -187,7 +186,6 @@ public class ExerciseReportAty extends BaseAty {
                         if (objectMap.get("code").equals("1")) {
                             ExerciseReportBean reportBean = GsonUtil.GsonToBean(response, ExerciseReportBean.class);
                             atyExerciseReportJg.setText("答对"+reportBean.getData().getCount()+"题");
-                            Log.d("exelnrlewkk", "onResponse: ============"+response);
                             adapter.setNewData(reportBean.getData().getList());
                             adapter.notifyDataSetChanged();
                             return;
@@ -208,11 +206,12 @@ public class ExerciseReportAty extends BaseAty {
                 , new ResponseListener() {
                     @Override
                     public void onResponse(String response, Exception error) {
-                        Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
+                        Map<String, String> objectMap = JSONUtils.parseKeyAndValueToMap(response);
                         if (objectMap.get("code").equals("1")) {
                             ExerciseReportBean reportBean = GsonUtil.GsonToBean(response, ExerciseReportBean.class);
-                            atyExerciseReportJg.setText("答对"+reportBean.getData().getCount()+"题");
-                            Log.d("exelnrlewkk", "onResponse: ============"+response);
+                            Map<String, Object> map = JSONUtils.parseJsonObjectStrToMap(objectMap.get("data"));
+//                            atyExerciseReportJg.setText("答对"+reportBean.getData().getCount()+"题");
+                            atyExerciseReportJg.setText("正确率: "+map.get("accuracy")+"%");
                             adapter.setNewData(reportBean.getData().getList());
                             adapter.notifyDataSetChanged();
                             return;

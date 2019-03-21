@@ -2,6 +2,9 @@ package com.txunda.construction_worker.ui.fgt;
 
 
 import android.app.Dialog;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -17,9 +20,6 @@ import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseokhttp.HttpRequest;
 import com.kongzue.baseokhttp.listener.ResponseListener;
 import com.kongzue.baseokhttp.util.Parameter;
-import com.tencent.mm.opensdk.modelbiz.SubscribeMessage;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.txunda.construction_worker.R;
 import com.txunda.construction_worker.base.BaseFgt;
 import com.txunda.construction_worker.bean.MyBean;
@@ -37,10 +37,12 @@ import com.txunda.construction_worker.ui.aty.RedPackageAty;
 import com.txunda.construction_worker.ui.aty.ShardAty;
 import com.txunda.construction_worker.ui.aty.SystemSettingAty;
 import com.txunda.construction_worker.utils.AllStatus;
-import com.txunda.construction_worker.utils.Constants;
 
 import java.util.Map;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.wechat.friends.Wechat;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 @Layout(R.layout.fgt_my)
@@ -171,13 +173,26 @@ public class MyFgt extends BaseFgt implements View.OnClickListener{
         dialog_rl_jump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubscribeMessage.Req req = new SubscribeMessage.Req();
-                IWXAPI api = WXAPIFactory.createWXAPI(me, Constants.APP_ID);
-                // 将该app注册到微信
-                api.registerApp(Constants.APP_ID);
-                req.templateID = "Ea8eGs9rLl45fV5cjRwPewSlyM1Nbe54FN3yR8xE8kQ";
-                req.scene = 889;
-                api.sendReq(req);
+                //TODO:微信发一年粘性消息
+//                SubscribeMessage.Req req = new SubscribeMessage.Req();
+//                IWXAPI api = WXAPIFactory.createWXAPI(me, Constants.APP_ID);
+//                // 将该app注册到微信
+//                api.registerApp(Constants.APP_ID);
+//                req.templateID = "Ea8eGs9rLl45fV5cjRwPewSlyM1Nbe54FN3yR8xE8kQ";
+//                req.scene = 889;
+//                api.sendReq(req);
+                //TODO:微信朋友分享图片
+                Platform.ShareParams sp = new Platform.ShareParams();
+                sp.setShareType(Platform.SHARE_IMAGE);//分享图片
+                Resources res = me.getResources();
+                Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.gz_wx_gzh);
+                sp.setImageData(bmp);
+                sp.setTitle("建工邦");
+                sp.setText("");// 分享文本
+                // 3、非常重要：获取平台对象
+                Platform wechathy = ShareSDK.getPlatform(Wechat.NAME);
+                // 执行分享
+                wechathy.share(sp);
             }
         });
     }

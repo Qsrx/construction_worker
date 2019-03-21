@@ -3,6 +3,9 @@ package com.txunda.construction_worker.ui.fgt;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -32,9 +35,6 @@ import com.kongzue.baseokhttp.HttpRequest;
 import com.kongzue.baseokhttp.listener.ResponseListener;
 import com.kongzue.baseokhttp.util.Parameter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.tencent.mm.opensdk.modelbiz.SubscribeMessage;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.txunda.construction_worker.MainAty;
 import com.txunda.construction_worker.R;
 import com.txunda.construction_worker.base.BaseFgt;
@@ -45,8 +45,9 @@ import com.txunda.construction_worker.ui.aty.ShardAty;
 import com.txunda.construction_worker.ui.aty.WebDetailsAty;
 import com.txunda.construction_worker.ui.aty.WritingProblemsAty;
 import com.txunda.construction_worker.utils.AllStatus;
-import com.txunda.construction_worker.utils.Constants;
 import com.txunda.construction_worker.utils.GlideImageLoader;
+import com.txunda.construction_worker.utils.ShareBeBackListener;
+import com.txunda.construction_worker.utils.ShareForApp;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 
@@ -60,8 +61,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.wechat.friends.Wechat;
+
 @Layout(R.layout.fgt_home)
-public class HomeFgt extends BaseFgt implements View.OnClickListener{
+public class HomeFgt extends BaseFgt implements View.OnClickListener,ShareBeBackListener{
     ImageView iv_mune,iv_share,iv_wx;
     TextView tv_title,tv_exam;
     RadioGroup rg;
@@ -245,41 +250,36 @@ public class HomeFgt extends BaseFgt implements View.OnClickListener{
         dialog_rl_jump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SubscribeMessage.Req req = new SubscribeMessage.Req();
-                IWXAPI api = WXAPIFactory.createWXAPI(me, Constants.APP_ID);
-                // 将该app注册到微信
-                api.registerApp(Constants.APP_ID);
-                req.templateID = "Ea8eGs9rLl45fV5cjRwPewSlyM1Nbe54FN3yR8xE8kQ";
-                req.scene = 889;
-                api.sendReq(req);
-
-
-
-                HttpRequest.POST(me, "https://api.weixin.qq.com/cgi-bin/message/template/subscribe?access_token=ACCESS_TOKEN", new Parameter()
-                                .add("", "")
-                        , new ResponseListener() {
-                            @Override
-                            public void onResponse(String response, Exception error) {
-
-                            }
-                        });
-//                IWXAPI mWxApi = WXAPIFactory.createWXAPI(me, Constants.APP_ID);
-//                mWxApi.registerApp(Constants.APP_ID);
-//                JumpToBizProfile.Req req =new JumpToBizProfile.Req();
-//                req.toUserName = "gh_e943e7d0c8b5";
-//                req.profileType = JumpToBizProfile.JUMP_TO_NORMAL_BIZ_PROFILE;
-//                mWxApi.sendReq(req);
-//                String appId = Constants.APP_ID;//开发者平台ID
-//                IWXAPI api = WXAPIFactory.createWXAPI(getActivity(), appId, false);
-//                if (api.isWXAppInstalled()) {
-//                    JumpToBizProfile.Req req = new JumpToBizProfile.Req();
-//                    req.toUserName = "wxc4b7cd3012d47c26"; // 公众号原始ID
-//                    req.extMsg = "";
-//                    req.profileType = JumpToBizProfile.JUMP_TO_NORMAL_BIZ_PROFILE; // 普通公众号
-//                    api.sendReq(req);
-//                }else{
-//                    Toast.makeText(getActivity(), "微信未安装", Toast.LENGTH_SHORT).show();
-//                }
+//                SubscribeMessage.Req req = new SubscribeMessage.Req();
+//                IWXAPI api = WXAPIFactory.createWXAPI(me, Constants.APP_ID);
+//                // 将该app注册到微信
+//                api.registerApp(Constants.APP_ID);
+//                req.templateID = "Ea8eGs9rLl45fV5cjRwPewSlyM1Nbe54FN3yR8xE8kQ";
+//                req.scene = 889;
+//                api.sendReq(req);
+//                Resources res = me.getResources();
+//                Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.gz_wx_gzh);
+//                /**
+//                 * logurl  标题
+//                 * contenturl分享地址
+//                 * title 标题
+//                 **/
+//                ShareForApp shareForApp = new ShareForApp(Wechat.NAME, bmp, "建工邦", "邀请您关注建工邦公众号", "https://www.baidu.com/", null);
+//                /**
+//                 * tyep 分享类型
+//                 **/
+//                shareForApp.toShareWithPicUrl(3);
+                Platform.ShareParams sp = new Platform.ShareParams();
+                sp.setShareType(Platform.SHARE_IMAGE);//分享图片
+                Resources res = me.getResources();
+                Bitmap bmp= BitmapFactory.decodeResource(res, R.drawable.gz_wx_gzh);
+                sp.setImageData(bmp);
+                sp.setTitle("建工邦");
+                sp.setText("");// 分享文本
+                // 3、非常重要：获取平台对象
+                Platform wechathy = ShareSDK.getPlatform(Wechat.NAME);
+                // 执行分享
+                wechathy.share(sp);
             }
         });
     }
@@ -396,4 +396,11 @@ public class HomeFgt extends BaseFgt implements View.OnClickListener{
         smartRefreshLayout.finishRefresh();
         smartRefreshLayout.finishLoadmore();
     }
+
+    @Override
+    public void beBack(ShareForApp.PlatformForShare platformForShare, ShareForApp.StatusForShare statusForShare, int code) {
+
+    }
+
+
 }
