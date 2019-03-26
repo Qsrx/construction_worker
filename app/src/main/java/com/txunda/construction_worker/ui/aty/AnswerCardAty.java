@@ -86,7 +86,9 @@ public class AnswerCardAty extends BaseAty {
                         new AlertDialog(me).builder().setTitle("您还未购买试卷").setMsg("购买之后可做完并交卷哦")
                                 .setPositiveButton("购买", new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) { jump(UnlockDetailsAty.class);
+                                    public void onClick(View v) {
+                                        jump(UnlockDetailsAty.class);
+                                        finish();
                                     }
                                 }).setNegativeButton("取消", new View.OnClickListener() {
                             @Override

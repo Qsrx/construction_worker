@@ -1,8 +1,12 @@
 package com.txunda.construction_worker.ui.aty;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -82,6 +86,10 @@ public class ConfirmOrderAty extends BaseAty {
     LinearLayout atyConfirmOrderYjPay;
     @BindView(R.id.aty_confirm_order_rl_dk)
     RelativeLayout atyConfirmOrderRlDk;
+    @BindView(R.id.aty_confirm_order_web)
+    WebView atyConfirmOrderWeb;
+    @BindView(R.id.aty_confirm_order_tv_buy_rule)
+    TextView atyConfirmOrderTvBuyRule;
     private String taocan_id;
     ConfirmOrderBean orderBean;
     ConfirmOrder2Bean order2Bean;
@@ -110,10 +118,24 @@ public class ConfirmOrderAty extends BaseAty {
                 atyConfirmOrderYjPay.setVisibility(View.VISIBLE);
             }
         });
+        WebSettings settings = atyConfirmOrderWeb.getSettings();
+        settings.setJavaScriptEnabled(true);
+        atyConfirmOrderWeb.requestFocusFromTouch();
+        atyConfirmOrderWeb.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+
+        /**覆盖调用系统或自带浏览器行为打开网页*/
+        atyConfirmOrderWeb.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                // TODO Auto-generated method stub
+                view.loadUrl(url);
+                return true;
+            }
+        });
     }
 
 
-    @OnClick({R.id.aty_confirm_order_tv_finish, R.id.header_iv_back, R.id.aty_confirm_order_use, R.id.aty_confirm_order_cant_use, R.id.aty_confirm_order_post})
+    @OnClick({R.id.aty_confirm_order_tv_buy_rule, R.id.aty_confirm_order_tv_finish, R.id.header_iv_back, R.id.aty_confirm_order_use, R.id.aty_confirm_order_cant_use, R.id.aty_confirm_order_post})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.header_iv_back:
@@ -155,6 +177,17 @@ public class ConfirmOrderAty extends BaseAty {
             case R.id.aty_confirm_order_tv_finish:
                 finish();
                 break;
+            case R.id.aty_confirm_order_tv_buy_rule:
+                if (taocan_id != null) {
+                    Intent intent = new Intent(me, RuleDetailsAty.class);
+                    intent.putExtra("strdata",orderBean.getData().getAgreement());
+                    startActivity(intent);
+                    return;
+                }
+                Intent intent = new Intent(me, RuleDetailsAty.class);
+                intent.putExtra("strdata",order2Bean.getData().getAgreement());
+                startActivity(intent);
+                break;
             default:
                 break;
         }
@@ -174,18 +207,11 @@ public class ConfirmOrderAty extends BaseAty {
     @Override
     public void initDatas(JumpParameter paramer) {
         super.initDatas(paramer);
-//        if (taocan_id != null){
-//            type = "1";
-//            httpData();
-//            return;
-//        }
-//        type = "2";
-        if (taocan_id!=null){
+        if (taocan_id != null) {
             httpData();
             return;
         }
         httpData2();
-//        httpData2();
     }
 
     /**
@@ -278,12 +304,12 @@ public class ConfirmOrderAty extends BaseAty {
         } else {
             use = "2";
         }
-        if (type == null){
+        if (type == null) {
             type = "3";
         }
-        if (subject_id == null){
+        if (subject_id == null) {
             httpData3(use);
-        }else {
+        } else {
             httpDown(use);
         }
 
@@ -306,13 +332,9 @@ public class ConfirmOrderAty extends BaseAty {
                             Map<String, String> stringMap = JSONUtils.parseKeyAndValueToMap(response);
                             if (stringMap.get("code").equals("1")) {
                                 Log.d("confirmorderbean", "onResponse: ============" + response);
-//                                WxPayBean wxPayBean = GsonUtil.GsonToBean(response,WxPayBean.class);
-//                                GetPrepayIdTask wxPay = new GetPrepayIdTask(me,wxPayBean.getData().getSign(),wxPayBean.getData().getAppid(), wxPayBean.getData().getNoncestr(),wxPayBean.getData().getPackageX(),wxPayBean.getData().getTimestamp(),
-//                                        wxPayBean.getData().getPrepayid(), "partnerid", "");
                                 Map<String, String> data = JSONUtils.parseKeyAndValueToMap(stringMap.get("data"));
                                 GetPrepayIdTask wxPay = new GetPrepayIdTask(me, data.get("sign"), data.get("appid"), data.get("noncestr"), data.get("package"), data.get("timestamp"),
                                         data.get("prepayid"), data.get("partnerid"), "");
-                                Log.d("confirmorderbean", "onResponse: ========" + wxPay.toString());
                                 wxPay.execute();
                             } else {
                                 showErrorTip(stringMap.get("message"));
@@ -322,13 +344,14 @@ public class ConfirmOrderAty extends BaseAty {
                 }
         );
     }
+
     /**
      * 加载本页数据
      */
-    private void httpData3(final String num){
+    private void httpData3(final String num) {
         HttpRequest.POST(me, AllStatus.BASE_URL + "Exercises/index", new Parameter()
-                        .add("token",token)
-                        .add("subject_id",subject_id)
+                        .add("token", token)
+                        .add("subject_id", subject_id)
                         .add("industry_id", Industry_ID)
                 , new ResponseListener() {
                     @Override
@@ -340,17 +363,18 @@ public class ConfirmOrderAty extends BaseAty {
                                     ItemBankBean bankBean = GsonUtil.GsonToBean(response, ItemBankBean.class);
                                     subject_id = bankBean.getData().getList().get(0).getSubject_id();
                                     httpDown(num);
-                                }catch (JsonSyntaxException e){
+                                } catch (JsonSyntaxException e) {
                                     toast("数据类型异常");
                                 }
-                            }else {
+                            } else {
                                 toast(objectMap.get("message"));
                             }
                         }
                     }
                 });
     }
-    private void httpDown(String use){
+
+    private void httpDown(String use) {
         HttpRequest.POST(me, AllStatus.BASE_URL + "Course/addorder", new Parameter()
                         .add("token", token)
                         .add("subject_id", subject_id)

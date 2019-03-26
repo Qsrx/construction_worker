@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.ants.theantsgo.gson.GsonUtil;
 import com.ants.theantsgo.util.JSONUtils;
+import com.bumptech.glide.Glide;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.interfaces.NavigationBarBackgroundColor;
@@ -84,6 +85,8 @@ public class ViewParsingAty extends BaseAty {
     WebView fgtContent2Web;
     @BindView(R.id.aty_view_parsing_ll_anli)
     LinearLayout atyViewParsingLlAnli;
+    @BindView(R.id.fgt_content2_answer_pic)
+    ImageView fgtContent2AnswerPic;
     private ViewParsingAdapter adapter;
     private List<String> list = new ArrayList<>();
     private List<String> titles = new ArrayList<>();
@@ -172,7 +175,7 @@ public class ViewParsingAty extends BaseAty {
                 }
                 try {
                     checkCollect(String.valueOf(detailsBean.getData().getQuestions_id()));
-                }catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     checkCollect(String.valueOf(databean.getData().getQuestions_id()));
                 }
 
@@ -204,6 +207,7 @@ public class ViewParsingAty extends BaseAty {
 //                                titles.add(parsingBean.getData().getB());
 //                                titles.add(parsingBean.getData().getC());
 //                                titles.add(parsingBean.getData().getD());
+                                Glide.with(me).load(parsingBean.getData().getAnswer_pic()).into(fgtContent2AnswerPic);
                                 for (int i = 0; i < parsingBean.getData().getOption().size(); i++) {
                                     list.add(parsingBean.getData().getOption().get(i).getAnswer());
                                     titles.add(parsingBean.getData().getOption().get(i).getQuestion());
@@ -249,6 +253,7 @@ public class ViewParsingAty extends BaseAty {
                                 list.add(detailsBean.getData().getOption().get(i).getAnswer());
                                 titles.add(detailsBean.getData().getOption().get(i).getQuestion());
                             }
+                            Glide.with(me).load(detailsBean.getData().getAnswer_pic()).into(fgtContent2AnswerPic);
                             STR = detailsBean.getData().getAnswer();
                             atyViewParsingCk.setText(detailsBean.getData().getAnswer());
                             adapter.notifyDataSetChanged();
@@ -261,11 +266,11 @@ public class ViewParsingAty extends BaseAty {
                             } else {
                                 atyDoWorkRbSc.setImageResource(R.mipmap.icon_unsc);
                             }
-                        }catch (NullPointerException e){
+                        } catch (NullPointerException e) {
                             databean = GsonUtil.GsonToBean(response, AnliDataBean.class);
                             atyViewParsingLlSelect.setVisibility(View.GONE);
                             atyViewParsingLlAnli.setVisibility(View.VISIBLE);
-                            fgtContent2Web.loadDataWithBaseURL(null,databean.getData().getSub_title()+databean.getData().getAnswer(), "text/html", "utf-8",null);
+                            fgtContent2Web.loadDataWithBaseURL(null, databean.getData().getSub_title() + databean.getData().getAnswer(), "text/html", "utf-8", null);
                             STR = databean.getData().getAnswer();
                             adapter.notifyDataSetChanged();
                             atyDoWorkTvTitle.setText(databean.getData().getTitle());

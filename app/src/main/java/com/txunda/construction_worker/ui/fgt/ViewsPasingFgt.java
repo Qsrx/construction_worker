@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ants.theantsgo.util.JSONUtils;
+import com.bumptech.glide.Glide;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.txunda.construction_worker.R;
 import com.txunda.construction_worker.base.BaseFgt;
@@ -34,7 +35,7 @@ public class ViewsPasingFgt extends BaseFgt {
     private ArrayList<Map<String, String>> option;
     private LinearLayout ll_select,ll_anli;
     private WebView webView;
-    private ImageView iv_viewspasing;
+    private ImageView iv_viewspasing,iv_answer_pic;
     TextView tv_title,tv_s_title,tv_answer,tv_choose,tv_jx,tv_kd;
     RecyclerView rv;
     @Override
@@ -45,6 +46,7 @@ public class ViewsPasingFgt extends BaseFgt {
         tv_s_title = findViewById(R.id.aty_do_work_tv_content);
         tv_answer = findViewById(R.id.aty_view_parsing_ck);
         tv_choose = findViewById(R.id.aty_view_parsing_myself);
+        iv_answer_pic = findViewById(R.id.fgt_views_pasing_answer_pic);
         tv_jx = findViewById(R.id.aty_view_parsing_jx);
         tv_kd = findViewById(R.id.aty_view_parsing_point);
         rv = findViewById(R.id.fgt_views_pasing_rv);
@@ -80,6 +82,7 @@ public class ViewsPasingFgt extends BaseFgt {
                 ll_anli.setVisibility(View.VISIBLE);
                 ll_select.setVisibility(View.GONE);
                 tv_title.setText(map.get("title"));
+                Glide.with(me).load(map.get("answer_pic")).into(iv_answer_pic);
                 webView.loadDataWithBaseURL(null,map.get("sub_title")+map.get("answer"), "text/html", "utf-8",null);
                 tv_jx.setText(map.get("analysis"));
                 tv_kd.setText(map.get("key"));
@@ -88,6 +91,7 @@ public class ViewsPasingFgt extends BaseFgt {
             //id和标题
             tv_title.setText(map.get("title"));
             tv_s_title.setText(map.get("sub_title"));
+            Glide.with(me).load(map.get("answer_pic")).into(iv_answer_pic);
             option = JSONUtils.parseKeyAndValueToMapList(map.get("option"));
             tv_jx.setText(map.get("analysis"));
             tv_kd.setText(map.get("key"));

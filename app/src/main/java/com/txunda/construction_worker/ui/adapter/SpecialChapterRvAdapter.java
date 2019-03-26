@@ -1,6 +1,5 @@
 package com.txunda.construction_worker.ui.adapter;
 
-import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -38,10 +37,9 @@ public class SpecialChapterRvAdapter extends BaseQuickAdapter<ChapterBean.DataBe
 //        }
         tv_title.setText(item.getTitle());
         if (SpecialExercisesAty.is_pay == 1){
-//            tv_test.setVisibility(View.GONE);
             tv_test.setText("开始答题");
         }else {
-            tv_test.setVisibility(View.VISIBLE);
+            tv_test.setText("试答"+item.getTry_questions()+"题");
         }
     }
 }

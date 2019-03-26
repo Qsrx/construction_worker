@@ -3,9 +3,9 @@ package com.txunda.construction_worker.ui.aty;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ants.theantsgo.gson.GsonUtil;
@@ -46,12 +46,16 @@ public class SpecialExercisesAty extends BaseAty {
     RecyclerView atySpecialExercisesRv;
     @BindView(R.id.aty_special_exercises_refreshLayout)
     SmartRefreshLayout atySpecialExercisesRefreshLayout;
+    @BindView(R.id.fgt_complte_no_data)
+    RelativeLayout fgtComplteNoData;
     private SpecialExercisesRvAdapter adapter;
     private SpecialChapterRvAdapter adapter2;
     public static int is_pay = -1;
     public static String chapter_id = "";
+    public static int try_questions;
     private SpecialExercisesBean exercisesBean;
     ChapterBean bean;
+
     @Override
     public void initViews() {
         super.initViews();
@@ -59,33 +63,28 @@ public class SpecialExercisesAty extends BaseAty {
         StatusBarUtil.StatusBarLightMode(this);
         String type = getIntent().getStringExtra("type");
         chapter_id = getIntent().getStringExtra("chapter_id");
-        if (type == null){
+        if (type == null) {
             headerTvTitle.setText("专项练习题");
-        }else {
+        } else {
             headerTvTitle.setText("章节练习题");
         }
-//        if (type.equals("2")){
-//
-//        }else {
-//
-//        }
 
         atySpecialExercisesRv.setLayoutManager(new LinearLayoutManager(this));
 
-        if (type == null){
+        if (type == null) {
             adapter = new SpecialExercisesRvAdapter(R.layout.item_special_exercises_layout);
             atySpecialExercisesRv.setAdapter(adapter);
             adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
                     Intent intent = new Intent(me, ViewPger2Aty.class);
-                    intent.putExtra("type",exercisesBean.getData().getContent().get(position).getTitle());
+                    intent.putExtra("type", exercisesBean.getData().getContent().get(position).getTitle());
+                    try_questions = Integer.valueOf(exercisesBean.getData().getContent().get(position).getTry_questions());
                     startActivity(intent);
 //                    jump(MoreDoWorkAty.class);
                 }
             });
-        }else {
+        } else {
             adapter2 = new SpecialChapterRvAdapter(R.layout.item_special_exercises_layout);
             atySpecialExercisesRv.setAdapter(adapter2);
             adapter2.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -93,7 +92,8 @@ public class SpecialExercisesAty extends BaseAty {
                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 //                    jump(MoreDoWorkAty.class);
                     Intent intent = new Intent(me, ViewPger2Aty.class);
-                    intent.putExtra("chapter_num",String.valueOf(position+1));
+                    intent.putExtra("chapter_num", String.valueOf(position + 1));
+                    try_questions = Integer.valueOf(bean.getData().getList().get(position).getTry_questions());
                     startActivity(intent);
                 }
             });
@@ -108,7 +108,7 @@ public class SpecialExercisesAty extends BaseAty {
     @Override
     public void initDatas(JumpParameter paramer) {
         super.initDatas(paramer);
-        if (chapter_id == null){
+        if (chapter_id == null) {
             httpData();
             return;
         }
@@ -118,30 +118,34 @@ public class SpecialExercisesAty extends BaseAty {
     /**
      * 请求本页数据
      */
-    private void httpData(){
-        WaitDialog.show(me,"数据加载中……");
+    private void httpData() {
+        WaitDialog.show(me, "数据加载中……");
         HttpRequest.POST(me, AllStatus.BASE_URL + "Exercises/special_exercises", new Parameter()
                         .add("token", token)
                         .add("subject_id", subject_id)
                 , new ResponseListener() {
                     @Override
                     public void onResponse(String response, Exception error) {
-                        if (error == null){
+                        if (error == null) {
                             WaitDialog.dismiss();
                             Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
                             if (objectMap.get("code").equals("1")) {
                                 exercisesBean = GsonUtil.GsonToBean(response, SpecialExercisesBean.class);
+                                if ( exercisesBean.getData().getContent() == null){
+                                    isNull(false);
+                                }
                                 adapter.setNewData(exercisesBean.getData().getContent());
                                 is_pay = exercisesBean.getData().getPay();
                                 adapter.notifyDataSetChanged();
-                            }else {
+                            } else {
                                 toast(objectMap.get("message").toString());
                             }
                         }
                     }
                 });
     }
-    private void httpData2(){
+
+    private void httpData2() {
         HttpRequest.POST(me, AllStatus.BASE_URL + "Exercises/chapter_practices", new Parameter()
                         .add("token", token)
                         .add("subject_id", subject_id)
@@ -149,20 +153,31 @@ public class SpecialExercisesAty extends BaseAty {
                 , new ResponseListener() {
                     @Override
                     public void onResponse(String response, Exception error) {
-                        if (error == null){
+                        if (error == null) {
                             WaitDialog.dismiss();
                             Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
-                            Log.d("iwejrioewbean", "onResponse: ==="+response);
                             if (objectMap.get("code").equals("1")) {
                                 bean = GsonUtil.GsonToBean(response, ChapterBean.class);
+                                if (bean.getData().getList() == null){
+                                    isNull(false);
+                                }
                                 adapter2.setNewData(bean.getData().getList());
                                 is_pay = bean.getData().getPay();
                                 adapter2.notifyDataSetChanged();
-                            }else {
+                            } else {
                                 toast(objectMap.get("message").toString());
                             }
                         }
                     }
                 });
+    }
+    private void isNull(boolean is_null){
+        if (is_null == true){
+            fgtComplteNoData.setVisibility(View.GONE);
+            atySpecialExercisesRefreshLayout.setVisibility(View.VISIBLE);
+        }else {
+            fgtComplteNoData.setVisibility(View.VISIBLE);
+            atySpecialExercisesRefreshLayout.setVisibility(View.GONE);
+        }
     }
 }

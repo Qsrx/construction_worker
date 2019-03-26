@@ -35,6 +35,7 @@ import com.txunda.construction_worker.ui.fgt.CourseSelectionFgt;
 import com.txunda.construction_worker.ui.fgt.LearningMaterialsFgt;
 import com.txunda.construction_worker.utils.AllStatus;
 import com.txunda.construction_worker.utils.Constant;
+import com.txunda.construction_worker.utils.LogUtil;
 import com.txunda.construction_worker.utils.MessageHelper;
 import com.txunda.construction_worker.utils.StatusBarUtil;
 
@@ -157,7 +158,8 @@ public class CourseSelectionAty extends BaseAty {
                 }else {
                     DEFINITION = 1;
                     atyCourseSelectionTvDefinition.setText("标清");
-                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" + selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getMulu() + "." + selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getName() + ".mp4";
+//                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" + selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getMulu() + "." + selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getName() + ".mp4";
+                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" +  selectionBean.getData().getShipin().get(CourseSelectionFgt.index).getName() + ".mp4";
                     if (isFileExit(s)) {
                         toast("本地播放");
                         atyCourseSelectionJz.setUp(s, null, Jzvd.SCREEN_WINDOW_NORMAL);
@@ -231,11 +233,13 @@ public class CourseSelectionAty extends BaseAty {
                     public void onResponse(String response, Exception error) {
                         if (error == null) {
                             WaitDialog.dismiss();
+                            LogUtil.e("iwqjeiowqioeq",response);
                             Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
                             try {
                                 if (objectMap.get("code").equals("1")) {
                                     selectionBean = GsonUtil.GsonToBean(response, CourseSelectionBean.class);
-                                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" + selectionBean.getData().getDirectory().get(0).getList().get(0).getMulu() + "." + selectionBean.getData().getDirectory().get(0).getList().get(0).getName() + ".mp4";
+//                                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" + selectionBean.getData().getDirectory().get(0).getList().get(0).getMulu() + "." + selectionBean.getData().getDirectory().get(0).getList().get(0).getName() + ".mp4";
+                                    String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/" + selectionBean.getData().getDirectory().get(0).getList().get(0).getName() + ".mp4";
                                     if (isFileExit(s)) {
                                         toast("本地播放");
                                         atyCourseSelectionJz.setUp(s, null, Jzvd.SCREEN_WINDOW_NORMAL);

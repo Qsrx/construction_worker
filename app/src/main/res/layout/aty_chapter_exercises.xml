@@ -18,4 +18,28 @@
         android:layout_height="match_parent"
         android:background="@color/color_d2d2d2"
         android:id="@+id/aty_chapter_exercises_rv"/>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/fgt_complte_no_data"
+        android:background="@color/color_d2d2d2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_my_cache_nodata"/>
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/color_c6"
+                android:text="暂无数据"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

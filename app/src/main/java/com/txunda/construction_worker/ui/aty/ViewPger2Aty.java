@@ -39,6 +39,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.txunda.construction_worker.ui.aty.SpecialExercisesAty.chapter_id;
+import static com.txunda.construction_worker.ui.aty.SpecialExercisesAty.try_questions;
 import static com.txunda.construction_worker.ui.fgt.ItemBankFgt.subject_id;
 
 
@@ -90,10 +91,42 @@ public class ViewPger2Aty extends BaseAty {
             }
             questions_type = "2";
             STYLE = 2;
+            if (try_questions == 0){
+                    new AlertDialog(me).builder().setTitle("您还未购买试卷").setMsg("购买之后可做本科目全部试卷哦")
+                            .setPositiveButton("购买", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    jump(UnlockDetailsAty.class);
+                                    finish();
+                                }
+                            }).setNegativeButton("取消", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // TODO Auto-generated method stub
+                            finish();
+                        }
+                    }).show();
+            }
             httpData2();
             return;
         }
         STYLE = 1;
+        if (try_questions == 0){
+                new AlertDialog(me).builder().setTitle("您还未购买试卷").setMsg("购买之后可做本科目全部试卷哦")
+                        .setPositiveButton("购买", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                jump(UnlockDetailsAty.class);
+                                finish();
+                            }
+                        }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        finish();
+                    }
+                }).show();
+        }
         practice();
     }
 
@@ -107,11 +140,6 @@ public class ViewPger2Aty extends BaseAty {
 
             @Override
             public void onPageSelected(int i) {
-//                if (list.get(i).get("collection").equals("1")) {
-//                    atyDoWorkRbSc.setImageResource(R.mipmap.icon_class_sc);
-//                }else {
-//                    atyDoWorkRbSc.setImageResource(R.mipmap.icon_unsc);
-//                }
                 index = i;
                 try {
                     PanDuanBean panDuanBean = PanDuanUtils.list.get(i);
@@ -129,12 +157,14 @@ public class ViewPger2Aty extends BaseAty {
                     }
                 }
 
-                if (i == 5) {
+                if (i == try_questions) {
                     if (list.get(i).get("pay").equals("2")){
                         new AlertDialog(me).builder().setTitle("您还未购买试卷").setMsg("购买之后可做本科目全部试卷哦")
                                 .setPositiveButton("购买", new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) { jump(UnlockDetailsAty.class);
+                                    public void onClick(View v) {
+                                        jump(UnlockDetailsAty.class);
+                                        finish();
                                     }
                                 }).setNegativeButton("取消", new View.OnClickListener() {
                             @Override
@@ -169,7 +199,7 @@ public class ViewPger2Aty extends BaseAty {
                     @Override
                     public void onResponse(String response, Exception error) {
                         if (error == null) {
-                            Log.d("viewpagedata", "onResponse: ===========" + MainAty.token);
+                            Log.d("viewpagedata", "onResponse: ===========" + response);
                             Map<String, String> map = JSONUtils.parseKeyAndValueToMap(response);
                             if (map.get("code").equals("1")) {
                                 Map<String, String> map1 = JSONUtils.parseKeyAndValueToMap(map.get("data"));
@@ -208,7 +238,6 @@ public class ViewPger2Aty extends BaseAty {
                     @Override
                     public void onResponse(String response, Exception error) {
                         if (error == null) {
-                            Log.d("viewpagedata", "onResponse: ===========" + MainAty.token);
                             Map<String, String> map = JSONUtils.parseKeyAndValueToMap(response);
                             if (map.get("code").equals("1")) {
                                 Map<String, String> map1 = JSONUtils.parseKeyAndValueToMap(map.get("data"));
@@ -290,7 +319,9 @@ public class ViewPger2Aty extends BaseAty {
                         new AlertDialog(me).builder().setTitle("您还未购买试卷").setMsg("购买之后可做完并交卷哦")
                                 .setPositiveButton("购买", new View.OnClickListener() {
                                     @Override
-                                    public void onClick(View v) { jump(UnlockDetailsAty.class);
+                                    public void onClick(View v) {
+                                        jump(UnlockDetailsAty.class);
+                                        finish();
                                     }
                                 }).setNegativeButton("取消", new View.OnClickListener() {
                             @Override
@@ -444,4 +475,5 @@ public class ViewPger2Aty extends BaseAty {
             }
         }
     }
+
 }

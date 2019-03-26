@@ -37,10 +37,10 @@ public class SpecialExercisesRvAdapter extends BaseQuickAdapter<SpecialExercises
             tv_title.setText("案例分析题");
         }
         if (SpecialExercisesAty.is_pay == 1){
-//            tv_test.setVisibility(View.GONE);
             tv_test.setText("开始答题");
         }else {
             tv_test.setVisibility(View.VISIBLE);
+            tv_test.setText("试答"+item.getTry_questions()+"题");
         }
     }
 }

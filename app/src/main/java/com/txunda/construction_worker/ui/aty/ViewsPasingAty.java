@@ -266,7 +266,6 @@ public class ViewsPasingAty extends BaseAty {
                 });
     }
     private void httpData5(String tp){
-        Log.d("233333324", "onResponse: ============"+tp);
         HttpRequest.POST(me, AllStatus.BASE_URL + "Exercises/record_detail", new Parameter()
                         .add("token", token)
                         .add("questions_typeid", tp)
@@ -277,6 +276,7 @@ public class ViewsPasingAty extends BaseAty {
                     @Override
                     public void onResponse(String response, Exception error) {
                         Map<String, String> map = JSONUtils.parseKeyAndValueToMap(response);
+                        Log.d("233333324", "onResponse: ============"+response);
                         if (map.get("code").equals("1")) {
                             ViewPasingBean reportBean = GsonUtil.GsonToBean(response, ViewPasingBean.class);
                             Map<String, String> map1 = JSONUtils.parseKeyAndValueToMap(map.get("data"));
@@ -313,11 +313,15 @@ public class ViewsPasingAty extends BaseAty {
         rb.setCompoundDrawables(compoundDrawables[0], null, null, null);
     }
     private void fristCollect(){
-        PanDuanBean panDuanBean = PanDuanUtils.views_list.get(0);
-        if (panDuanBean.collection.equals("1")) {
-            atyDoWorkRbSc.setImageResource(R.mipmap.icon_class_sc);
-        }else {
-            atyDoWorkRbSc.setImageResource(R.mipmap.icon_unsc);
+        try {
+            PanDuanBean panDuanBean = PanDuanUtils.views_list.get(0);
+            if (panDuanBean.collection.equals("1")) {
+                atyDoWorkRbSc.setImageResource(R.mipmap.icon_class_sc);
+            }else {
+                atyDoWorkRbSc.setImageResource(R.mipmap.icon_unsc);
+            }
+        }catch (IndexOutOfBoundsException e){
+            atyDoWorkRbSc.setVisibility(View.GONE);
         }
     }
     /**

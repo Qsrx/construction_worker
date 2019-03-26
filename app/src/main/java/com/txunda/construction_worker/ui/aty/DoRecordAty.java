@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,14 +84,7 @@ public class DoRecordAty extends BaseAty {
         }
         dialog_phone = new AlertDialog.Builder(this).create();
         adapter = new DoRecordRvAdapter(R.layout.item_do_record_layout);
-//        adapter.setNewData(list);
         atyDoRecordRv.setAdapter(adapter);
-//        lists = new ArrayList<>();
-//        lists.add("全部");
-//        lists.add("专项练习题");
-//        lists.add("章节练习题");
-//        lists.add("模拟考试题");
-//        lists.add("真题考试提");
     }
 
     @OnClick({R.id.aty_do_record_back, R.id.aty_do_record_menu})
@@ -104,6 +96,7 @@ public class DoRecordAty extends BaseAty {
             case R.id.aty_do_record_menu:
                 showPop();
                 break;
+                default:break;
         }
     }
     private void  showPop() {
@@ -154,7 +147,6 @@ public class DoRecordAty extends BaseAty {
                 intent.putExtra("str",data.get(position).getExercise_type());
                 intent.putExtra("chapter_i",data.get(position).getClass_type());
                 intent.putExtra("chapter_n",data.get(position).getChapter_num());
-                Log.d("233333324", "onResponse: ============"+data.get(position).getQuestions_typeid());
                 startActivity(intent);
             }
         });
@@ -180,7 +172,6 @@ public class DoRecordAty extends BaseAty {
                             Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
                             if (objectMap.get("code").equals("1")) {
                                 WaitDialog.dismiss();
-                                Log.d("dorecorddatabean", "onResponse: =============="+response);
                                 atyDoRecordRefreshLayout.finishRefresh();
                                 atyDoRecordRefreshLayout.finishLoadmore();
                                 recordBean = GsonUtil.GsonToBean(response, DoRecordBean.class);
@@ -191,6 +182,7 @@ public class DoRecordAty extends BaseAty {
                                 if (page == 1) {
                                     if (recordBean.getData().getRecord() == null || recordBean.getData().getRecord().size() == 0) {
                                         showErrorTip("暂无数据");
+                                        adapter.setNewData(recordBean.getData().getRecord());
                                         adapter.notifyDataSetChanged();
                                         return;
                                     }

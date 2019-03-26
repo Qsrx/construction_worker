@@ -1,6 +1,7 @@
 package com.txunda.construction_worker.ui.fgt;
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.kongzue.baseframework.interfaces.Layout;
 import com.txunda.construction_worker.R;
 import com.txunda.construction_worker.base.BaseFgt;
 import com.txunda.construction_worker.ui.adapter.ContentAdp;
+import com.txunda.construction_worker.ui.aty.ImageDetailsAty;
 import com.txunda.construction_worker.ui.aty.ViewPger2Aty;
 import com.txunda.construction_worker.utils.PanDuanUtils;
 
@@ -43,7 +45,7 @@ public class Content2Fgt extends BaseFgt{
     private LinearLayout ll_select;
     private LinearLayout ll_anli;
     private WebView fgt_web;
-    private ImageView iv_img;
+    private ImageView iv_img,iv_answer;
     private TextView al_et;
     private int index;
     private ContentAdp contentAdp;
@@ -60,7 +62,7 @@ public class Content2Fgt extends BaseFgt{
         aty_do_work_tv_jx = findViewById(R.id.fgt_do_work_jx);
         fgt_do_work_kd = findViewById(R.id.fgt_do_work_kd);
         fgt_content_jx = findViewById(R.id.aty_do_work_ll_jx);
-
+        iv_answer = findViewById(R.id.fgt_content2_answer_pic);
         ll_select = findViewById(R.id.fgt_content2_ll_select);
         ll_anli = findViewById(R.id.fgt_content2_ll_anl);
         fgt_web = findViewById(R.id.fgt_content2_web);
@@ -96,6 +98,7 @@ public class Content2Fgt extends BaseFgt{
             //id和标题
             aty_do_work_tv_title.setText(map.get("title"));
             aty_do_work_tv_content.setText(map.get("sub_title"));
+            Glide.with(me).load(map.get("answer_pic")).into(iv_answer);
             option = JSONUtils.parseKeyAndValueToMapList(map.get("option"));
             aty_do_work_tv_jx.setText(map.get("analysis"));
             fgt_do_work_kd.setText(map.get("key"));
@@ -157,6 +160,24 @@ public class Content2Fgt extends BaseFgt{
             public void onClick(View view) {
                 fgt_content_see_all.setVisibility(View.GONE);
                 fgt_content_jx.setVisibility(View.VISIBLE);
+            }
+        });
+        iv_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String, String> map = ViewPger2Aty.list.get(index);
+                Intent intent = new Intent(me, ImageDetailsAty.class);
+                intent.putExtra("url",map.get("fenxi_pic"));
+                startActivity(intent);
+            }
+        });
+        iv_answer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String, String> map = ViewPger2Aty.list.get(index);
+                Intent intent = new Intent(me, ImageDetailsAty.class);
+                intent.putExtra("url",map.get("answer_pic"));
+                startActivity(intent);
             }
         });
     }

@@ -59,12 +59,21 @@ public class ViewParsingBean {
         private String title;
         private int questions_id;
         private String sub_title;
+        private String answer_pic;
         private String answer1;
         private String choose_answer;
         private String analysis;
         private String key;
         private int collection;
         private List<OptionBean> option;
+
+        public String getAnswer_pic() {
+            return answer_pic;
+        }
+
+        public void setAnswer_pic(String answer_pic) {
+            this.answer_pic = answer_pic;
+        }
 
         public String getTitle() {
             return title;

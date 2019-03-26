@@ -57,6 +57,15 @@ public class ConfirmOrderBean {
         private String sub_title;
         private String price;
         private String balance;
+        private String agreement;
+
+        public String getAgreement() {
+            return agreement;
+        }
+
+        public void setAgreement(String agreement) {
+            this.agreement = agreement;
+        }
 
         public String getTaocan_id() {
             return taocan_id;

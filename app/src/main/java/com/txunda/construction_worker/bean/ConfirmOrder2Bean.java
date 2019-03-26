@@ -56,6 +56,15 @@ public class ConfirmOrder2Bean {
         private String price;
         private String sub_title;
         private String balance;
+        private String agreement;
+
+        public String getAgreement() {
+            return agreement;
+        }
+
+        public void setAgreement(String agreement) {
+            this.agreement = agreement;
+        }
 
         public String getPic() {
             return pic;

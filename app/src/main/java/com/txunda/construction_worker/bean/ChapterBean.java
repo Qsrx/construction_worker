@@ -78,8 +78,17 @@ public class ChapterBean {
              */
 
             private String title;
+            private String try_questions;
             private String is_fee;
             private String count;
+
+            public String getTry_questions() {
+                return try_questions;
+            }
+
+            public void setTry_questions(String try_questions) {
+                this.try_questions = try_questions;
+            }
 
             public String getTitle() {
                 return title;

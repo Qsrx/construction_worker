@@ -194,6 +194,13 @@
                     android:textColor="@color/color_c3"
                     android:layout_height="wrap_content"
                     tools:text="本题考核工程暂停、终止合同的索赔。工程师有权仙灵暂停全部或者任何部分工程。只要这种暂停命令并非承包人"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:layout_marginRight="@dimen/dp_15"
+                    android:id="@+id/fgt_content2_answer_pic" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

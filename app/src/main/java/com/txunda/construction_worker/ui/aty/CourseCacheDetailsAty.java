@@ -113,7 +113,8 @@ public class CourseCacheDetailsAty extends BaseAty {
                                 childmulu[i] = new String[classMlBean.getData().get(i).getList().size()];
                                 childpath[i] = new String[classMlBean.getData().get(i).getList().size()];
                                 for (int j = 0; j < classMlBean.getData().get(i).getList().size(); j++) {
-                                    childtitle[i][j] = classMlBean.getData().get(i).getList().get(j).getMulu() + "." + classMlBean.getData().get(i).getList().get(j).getName();
+//                                    childtitle[i][j] = classMlBean.getData().get(i).getList().get(j).getMulu() + "." + classMlBean.getData().get(i).getList().get(j).getName();
+                                    childtitle[i][j] = classMlBean.getData().get(i).getList().get(j).getName();
                                     childlock[i][j] = classMlBean.getData().get(i).getList().get(j).getType();
                                     childtime[i][j] = classMlBean.getData().get(i).getList().get(j).getTime();
                                     childpath[i][j] = classMlBean.getData().get(i).getList().get(j).getPath();

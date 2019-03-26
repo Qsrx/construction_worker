@@ -79,7 +79,7 @@ public class CourseSelectionFgt extends BaseFgt {
                         index = postion;
                         h_adapter.notifyDataSetChanged();
                         //TODO:后台接口待添加视频名称
-                        String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/"+selectionBean.getData().getShipin().get(postion).getMulu()+"."+selectionBean.getData().getShipin().get(postion).getName() + ".mp4";
+                        String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/"+selectionBean.getData().getShipin().get(postion).getName() + ".mp4";
                         if (isFileExit(s)){
                             showTips("本地播放");
                             Log.d("jiaozistate", "onResponse: ===========本地播放");
@@ -110,7 +110,7 @@ public class CourseSelectionFgt extends BaseFgt {
                     if (i == 0){
                         index = i1;
                         h_adapter.notifyDataSetChanged();
-                        String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/"+selectionBean.getData().getShipin().get(i1).getMulu()+"."+selectionBean.getData().getShipin().get(i1).getName() + ".mp4";
+                        String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/"+selectionBean.getData().getShipin().get(i1).getName() + ".mp4";
                         if (isFileExit(s)){
                             showTips("本地播放");
                             Log.d("jiaozistate", "onResponse: ===========本地播放");
@@ -131,7 +131,8 @@ public class CourseSelectionFgt extends BaseFgt {
                         int i2 = i1 + childtitle[0].length ;
                         index = i2;
                         h_adapter.notifyDataSetChanged();
-                        String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/"+selectionBean.getData().getShipin().get(i2).getMulu()+"."+selectionBean.getData().getShipin().get(i2).getName() + ".mp4";
+//                        String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/"+selectionBean.getData().getShipin().get(i2).getMulu()+"."+selectionBean.getData().getShipin().get(i2).getName() + ".mp4";
+                        String s = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "建工邦" + "/"+selectionBean.getData().getShipin().get(i2).getName() + ".mp4";
                         if (isFileExit(s)){
                             showTips("本地播放");
                             Log.d("jiaozistate", "onResponse: ===========本地播放");
@@ -199,7 +200,8 @@ public class CourseSelectionFgt extends BaseFgt {
                                         childlock[i] = new String[selectionBean.getData().getDirectory().get(i).getList().size()];
                                         childmulu[i] = new String[selectionBean.getData().getDirectory().get(i).getList().size()];
                                         for (int j = 0; j < selectionBean.getData().getDirectory().get(i).getList().size(); j++) {
-                                            childtitle[i][j] = selectionBean.getData().getDirectory().get(i).getList().get(j).getMulu()+"."+selectionBean.getData().getDirectory().get(i).getList().get(j).getName();
+//                                            childtitle[i][j] = selectionBean.getData().getDirectory().get(i).getList().get(j).getMulu()+"."+selectionBean.getData().getDirectory().get(i).getList().get(j).getName();
+                                            childtitle[i][j] = selectionBean.getData().getDirectory().get(i).getList().get(j).getName();
                                             childlock[i][j] = selectionBean.getData().getDirectory().get(i).getList().get(j).getType();
                                             childtime[i][j] = selectionBean.getData().getDirectory().get(i).getList().get(j).getTime();
                                         }

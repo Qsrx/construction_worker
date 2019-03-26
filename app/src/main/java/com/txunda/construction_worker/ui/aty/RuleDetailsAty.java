@@ -33,7 +33,7 @@ public class RuleDetailsAty extends BaseAty {
     TextView headerTvTitle;
     @BindView(R.id.aty_rule_details_web)
     WebView atyRuleDetailsWeb;
-
+    private String strdata;
     @Override
     public void initViews() {
         super.initViews();
@@ -53,24 +53,31 @@ public class RuleDetailsAty extends BaseAty {
                 return true;
             }
         });
+        strdata = getIntent().getStringExtra("strdata");
     }
 
     @Override
     public void initDatas(JumpParameter paramer) {
         super.initDatas(paramer);
-        HttpRequest.POST(this, AllStatus.BASE_URL + "Member/article", new Parameter(), new ResponseListener() {
-            @Override
-            public void onResponse(String response, Exception error) {
-                if (error == null) {
-                    Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
-                    if (objectMap.get("code").equals("1")) {
-                        RegisterRuleDetailsBean detailsBean = GsonUtil.GsonToBean(response,RegisterRuleDetailsBean.class);
-                        headerTvTitle.setText(detailsBean.getData().getTitle());
-                        atyRuleDetailsWeb.loadDataWithBaseURL(null, detailsBean.getData().getContent(), "text/html", "utf-8", null);
+        if (isNull(strdata)){
+            HttpRequest.POST(this, AllStatus.BASE_URL + "Member/article", new Parameter(), new ResponseListener() {
+                @Override
+                public void onResponse(String response, Exception error) {
+                    if (error == null) {
+                        Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
+                        if (objectMap.get("code").equals("1")) {
+                            RegisterRuleDetailsBean detailsBean = GsonUtil.GsonToBean(response,RegisterRuleDetailsBean.class);
+                            headerTvTitle.setText(detailsBean.getData().getTitle());
+                            atyRuleDetailsWeb.loadDataWithBaseURL(null, detailsBean.getData().getContent(), "text/html", "utf-8", null);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }else {
+            headerTvTitle.setText("购买协议");
+            atyRuleDetailsWeb.loadDataWithBaseURL(null, strdata, "text/html", "utf-8", null);
+        }
+
     }
 
     @OnClick(R.id.header_iv_back)

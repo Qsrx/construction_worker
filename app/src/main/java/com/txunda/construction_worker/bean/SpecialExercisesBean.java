@@ -77,8 +77,17 @@ public class SpecialExercisesBean {
              */
 
             private String title;
+            private String try_questions;
             private String count;
             private String is_fee;
+
+            public String getTry_questions() {
+                return try_questions;
+            }
+
+            public void setTry_questions(String try_questions) {
+                this.try_questions = try_questions;
+            }
 
             public String getTitle() {
                 return title;

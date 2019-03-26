@@ -117,7 +117,6 @@ public class SystemClassFgt extends BaseFgt implements View.OnClickListener{
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden == false){
-//            nestedScrollView.smoothScrollTo(0, 0);
             httpData();
         }
     }
@@ -196,7 +195,6 @@ public class SystemClassFgt extends BaseFgt implements View.OnClickListener{
                             WaitDialog.dismiss();
                             refreshLayout.finishRefresh();
                             refreshLayout.finishLoadmore();
-//                            Log.d("systemclassdata", "onResponse: ====================="+response);
                             Map<String, Object> objectMap = JSONUtils.parseJsonObjectStrToMap(response);
                             try {
                                 if (objectMap.get("code").equals("1")) {
@@ -210,10 +208,6 @@ public class SystemClassFgt extends BaseFgt implements View.OnClickListener{
                                     }catch (IndexOutOfBoundsException e){
                                         tv_type.setText("");
                                     }
-                                    Glide.with(me).load(classBean.getData().getRecommend().getTaocan_pic()).into(siv);
-                                    tv_title.setText(classBean.getData().getRecommend().getTitle());
-                                    tv_price.setText("¥ "+classBean.getData().getRecommend().getPrice());
-                                    tv_pay.setText(classBean.getData().getRecommend().getCount());
                                     if (page == 1) {
                                         if (classBean.getData() == null || classBean.getData().getSystem().size() == 0) {
                                             showTips("暂无数据");
@@ -221,6 +215,10 @@ public class SystemClassFgt extends BaseFgt implements View.OnClickListener{
                                         } else {
                                             adapter.setNewData(classBean.getData().getSystem());
                                         }
+                                        Glide.with(me).load(classBean.getData().getRecommend().getTaocan_pic()).into(siv);
+                                        tv_title.setText(classBean.getData().getRecommend().getTitle());
+                                        tv_price.setText("¥ "+classBean.getData().getRecommend().getPrice());
+                                        tv_pay.setText(classBean.getData().getRecommend().getCount());
                                     } else {
                                         if (classBean.getData() == null || classBean.getData().getSystem().size() == 0) {
                                             toast("没有更多数据了");

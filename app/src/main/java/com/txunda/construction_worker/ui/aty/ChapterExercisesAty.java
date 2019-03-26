@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ants.theantsgo.gson.GsonUtil;
@@ -43,8 +44,11 @@ public class ChapterExercisesAty extends BaseAty {
     TextView headerTvTitle;
     @BindView(R.id.aty_chapter_exercises_rv)
     RecyclerView atyChapterExercisesRv;
+    @BindView(R.id.fgt_complte_no_data)
+    RelativeLayout fgtComplteNoData;
     private ChapterExercisesRvAdapter adapter;
     private ChapterExercisesBean exercisesBean;
+
     @Override
     public void initViews() {
         super.initViews();
@@ -73,8 +77,8 @@ public class ChapterExercisesAty extends BaseAty {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = new Intent(me, SpecialExercisesAty.class);
-                intent.putExtra("type","2");
-                intent.putExtra("chapter_id",exercisesBean.getData().get(position).getClass_type());
+                intent.putExtra("type", "2");
+                intent.putExtra("chapter_id", exercisesBean.getData().get(position).getClass_type());
                 startActivity(intent);
             }
         });
@@ -89,9 +93,9 @@ public class ChapterExercisesAty extends BaseAty {
     /**
      * 请求本页数据
      */
-    private void httpData(){
+    private void httpData() {
         //显示加载框
-        WaitDialog.show(me,"数据加载中……");
+        WaitDialog.show(me, "数据加载中……");
         HttpRequest.POST(me, AllStatus.BASE_URL + "Exercises/chapter_exercises", new Parameter()
                         .add("token", token)
                         .add("subject_id", subject_id)
@@ -106,14 +110,17 @@ public class ChapterExercisesAty extends BaseAty {
                             //code为1是显示成功,失败则显示后台异常
                             if (objectMap.get("code").equals("1")) {
                                 exercisesBean = GsonUtil.GsonToBean(response, ChapterExercisesBean.class);
+                                if (exercisesBean.getData() == null){
+                                    fgtComplteNoData.setVisibility(View.VISIBLE);
+                                    atyChapterExercisesRv.setVisibility(View.GONE);
+                                }
                                 adapter.setNewData(exercisesBean.getData());
                                 adapter.notifyDataSetChanged();
-                            }else {
+                            } else {
                                 showErrorTip(objectMap.get("message").toString());
                             }
                         }
                     }
                 });
     }
-
 }
